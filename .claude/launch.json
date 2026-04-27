@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "flowcharts",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["--yes", "serve", "-p", "7878", "products/autism-therapy-platform/meetings/engineering"],
+      "port": 7878
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+# Environment variables — never commit API keys
+.env
+.env.*
+!.env.example
+
+# macOS system files
+.DS_Store
+.AppleDouble
+.LSOverride
+Thumbs.db
+
+# Node / Python artifacts (if tools/ ever grows)
+node_modules/
+__pycache__/
+*.pyc
+*.pyo
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs
+*.log

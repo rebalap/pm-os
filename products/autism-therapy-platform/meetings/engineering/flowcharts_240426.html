@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ATP &mdash; Journey Flowcharts | 2026-04-24</title>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f4f7f9; color: #101319; min-height: 100vh; }
+  .header { background: #175F63; color: #fff; padding: 20px 32px; display: flex; justify-content: space-between; align-items: center; }
+  .header h1 { font-size: 18px; font-weight: 700; letter-spacing: -0.3px; }
+  .header .meta { font-size: 12px; opacity: 0.75; text-align: right; line-height: 1.7; }
+  .tabs { background: #fff; border-bottom: 2px solid #d4e4e5; padding: 0 24px; display: flex; gap: 2px; overflow-x: auto; position: sticky; top: 0; z-index: 100; }
+  .tab-btn { padding: 13px 16px; border: none; background: none; font-size: 12px; font-weight: 500; color: #646871; cursor: pointer; border-bottom: 3px solid transparent; white-space: nowrap; transition: color 0.15s, background 0.15s; }
+  .tab-btn:hover { color: #175F63; background: #f0fafa; }
+  .tab-btn.active { color: #175F63; border-bottom-color: #20A6AD; font-weight: 700; background: #f8fdfd; }
+  .tab-btn.deferred { color: #9a7000; }
+  .tab-btn.deferred.active { border-bottom-color: #f0c14b; background: #fffbea; color: #7a5800; }
+  .tab-panel { padding: 28px 32px 48px; }
+  .tab-panel.hidden { display: none; }
+  .panel-header { margin-bottom: 22px; }
+  .panel-header h2 { font-size: 20px; color: #175F63; margin-bottom: 6px; font-weight: 700; }
+  .panel-header h2.deferred-title { color: #7a5800; }
+  .panel-header h2.outscope-title { color: #9B2825; }
+  .panel-header p { font-size: 14px; color: #646871; line-height: 1.6; max-width: 760px; }
+  .badges { display: flex; gap: 10px; margin: 10px 0 16px; flex-wrap: wrap; }
+  .badge { border-radius: 20px; padding: 4px 12px; font-size: 11px; font-weight: 600; line-height: 1.6; }
+  .badge.teal { background: #EEF9F9; border: 1px solid #20A6AD; color: #175F63; }
+  .badge.red { background: #fdf2f2; border: 1px solid #CD423A; color: #9B2825; }
+  .badge.gray { background: #f5f5f6; border: 1px solid #c0c3c8; color: #646871; }
+  .badge.amber { background: #fffbea; border: 1px solid #f0c14b; color: #7a5800; }
+  .chart-wrap { background: #fff; border-radius: 8px; border: 1px solid #dde7e8; padding: 28px 20px; overflow-x: auto; text-align: center; }
+  .legend { margin-top: 16px; background: #fff; border-radius: 8px; border: 1px solid #dde7e8; padding: 14px 20px; display: flex; align-items: center; flex-wrap: wrap; gap: 18px; }
+  .legend-label { font-size: 11px; font-weight: 700; color: #646871; text-transform: uppercase; letter-spacing: 0.6px; }
+  .legend-item { display: flex; align-items: center; gap: 7px; font-size: 12px; color: #101319; }
+  .swatch { width: 14px; height: 14px; border-radius: 3px; flex-shrink: 0; border: 1px solid rgba(0,0,0,0.12); }
+  .note { margin-top: 16px; border-radius: 6px; padding: 12px 16px; font-size: 13px; line-height: 1.6; }
+  .note.info { background: #f0fafa; border-left: 4px solid #20A6AD; }
+  .note.warn { background: #fdf2f2; border-left: 4px solid #CD423A; }
+  .note.tip { background: #fffbea; border-left: 4px solid #f0c14b; }
+  pre.mermaid { min-height: 60px; }
+  .data-table { width: 100%; border-collapse: collapse; margin-top: 0; background: #fff; border-radius: 8px; overflow: hidden; border: 1px solid #dde7e8; }
+  .data-table th { background: #175F63; color: #fff; padding: 10px 14px; font-size: 12px; font-weight: 600; text-align: left; }
+  .data-table td { padding: 10px 14px; font-size: 12px; border-bottom: 1px solid #f0f2f3; vertical-align: top; line-height: 1.55; }
+  .data-table tr:last-child td { border-bottom: none; }
+  .data-table tr:hover td { background: #f8fdfd; }
+  .row-high td { background: #fff8f8; }
+  .row-medium td { background: #fffdf0; }
+  .row-low td { background: #fafafa; }
+  .pill { display: inline-block; border-radius: 12px; padding: 2px 8px; font-size: 10px; font-weight: 700; }
+  .pill.high { background: #fdf2f2; color: #9B2825; border: 1px solid #CD423A; }
+  .pill.medium { background: #fffbea; color: #7a5800; border: 1px solid #f0c14b; }
+  .pill.low { background: #f5f5f6; color: #646871; border: 1px solid #c0c3c8; }
+  .section-sub { font-size: 14px; font-weight: 700; color: #175F63; margin: 24px 0 10px; }
+  @media print {
+    .tabs { display: none; }
+    .tab-panel { display: block !important; page-break-after: always; padding: 20px; }
+    .header { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Autism Therapy Platform &mdash; Journey Flowcharts</h1>
+  <div class="meta">Discovery Stage &middot; 2026-04-24<br>12 Journeys &middot; 18 Hypotheses &middot; 12 Break Points</div>
+</div>
+
+<div class="tabs" role="tablist">
+  <button class="tab-btn active" onclick="showTab('ov',this)">&#128506; Lifecycle</button>
+  <button class="tab-btn" onclick="showTab('dc',this)">&#128279; Dependencies</button>
+  <button class="tab-btn" onclick="showTab('j0',this)">J0 DPDPA</button>
+  <button class="tab-btn" onclick="showTab('j1',this)">J1 Inquiry</button>
+  <button class="tab-btn" onclick="showTab('j2',this)">J2 Intake</button>
+  <button class="tab-btn" onclick="showTab('j3',this)">J3 Scheduling</button>
+  <button class="tab-btn deferred" onclick="showTab('j4',this)">J4 Prog.Design &#10060;</button>
+  <button class="tab-btn deferred" onclick="showTab('j5',this)">J5 In-Session &#10060;</button>
+  <button class="tab-btn" onclick="showTab('j6',this)">J6 Session Notes</button>
+  <button class="tab-btn deferred" onclick="showTab('j7',this)">J7 Supervisor &#10060;</button>
+  <button class="tab-btn deferred" onclick="showTab('j8',this)">J8 Reports &#10060;</button>
+  <button class="tab-btn" onclick="showTab('j9',this)">J9 Billing</button>
+  <button class="tab-btn" onclick="showTab('j10',this)">J10 Dropout</button>
+  <button class="tab-btn" onclick="showTab('j11',this)">J11 Analytics</button>
+  <button class="tab-btn" onclick="showTab('hy',this)">&#128300; Hypotheses</button>
+  <button class="tab-btn" onclick="showTab('rk',this)">&#9888; Risks</button>
+</div>
+
+<!-- ===== LIFECYCLE OVERVIEW ===== -->
+<div id="panel-ov" class="tab-panel active">
+  <div class="panel-header">
+    <h2>Platform Lifecycle &mdash; All 12 Journeys</h2>
+    <p>End-to-end flow across the full therapy center operating cycle. Journey 0 (DPDPA consent) is a hard regulatory gate that blocks all data entry. Amber journeys are deferred from MVP; red denotes out-of-scope for India. The attendance mark in Journey 3 is the critical cascade node &mdash; it simultaneously feeds billing, session notes, and dropout detection.</p>
+  </div>
+  <div class="badges">
+    <span class="badge teal">8 journeys in MVP scope</span>
+    <span class="badge amber">3 journeys deferred post-MVP</span>
+    <span class="badge red">1 journey out of scope (India)</span>
+    <span class="badge red">J0 is a blocking gate</span>
+  </div>
+  <div class="chart-wrap">
+<pre class="mermaid">
+flowchart LR
+  classDef inscope fill:#175F63,color:#fff,stroke:#10494C,stroke-width:1.5px
+  classDef gate fill:#CD423A,color:#fff,stroke:#8B2E2E,stroke-width:2.5px
+  classDef deferred fill:#fef9ee,color:#7a5800,stroke:#f0c14b,stroke-width:2px
+  classDef outscope fill:#fdf2f2,color:#9B2825,stroke:#CD423A,stroke-width:1.5px,stroke-dasharray:6 3
+  classDef analytics fill:#646871,color:#fff,stroke:#404347,stroke-width:1.5px
+
+  J0([J0 DPDPA Gate]) --> J1[J1 Inquiry]
+  J1 --> J2[J2 Intake and Enrollment]
+  J2 --> J3[J3 Scheduling and Attendance]
+  J2 -.->|Deferred| J4[J4 Program Design]
+  J3 --> J6[J6 Session Notes]
+  J3 -.->|Out of scope India| J5[J5 In-Session Data]
+  J5 -.->|Deferred| J7[J7 Supervisor Review]
+  J6 --> J7
+  J7 -.->|Deferred| J8[J8 Progress Reports]
+  J3 --> J9[J9 Billing]
+  J3 --> J10[J10 Dropout Prevention]
+  J9 --> J11[J11 Analytics]
+  J10 --> J11
+  J8 -.-> J11
+
+  class J0 gate
+  class J1,J2,J3,J6,J9,J10 inscope
+  class J11 analytics
+  class J4,J7,J8 deferred
+  class J5 outscope
+</pre>
+  </div>
+  <div class="legend">
+    <span class="legend-label">Key</span>
+    <span class="legend-item"><span class="swatch" style="background:#CD423A"></span> J0 DPDPA Gate (blocks all data entry)</span>
+    <span class="legend-item"><span class="swatch" style="background:#175F63"></span> In-scope for MVP</span>
+    <span class="legend-item"><span class="swatch" style="background:#fef9ee;border:2px solid #f0c14b"></span> Deferred post-MVP</span>
+    <span class="legend-item"><span class="swatch" style="background:#fdf2f2;border:2px dashed #CD423A"></span> Out of scope (India)</span>
+    <span class="legend-item"><span class="swatch" style="background:#646871"></span> Analytics (fed by all journeys)</span>
+  </div>
+  <div class="note info">
+    <strong>MVP shape:</strong> The platform launches as a clinical management tool (J0, J1, J2, J3, J6, J9, J10, J11). Clinical differentiation (J4 Program Design, J8 Progress Reports) follows post-MVP. The dashed lines show the intended future flow once deferred journeys are built.
+  </div>
+  <div class="note warn">
+    <strong>Adoption risk:</strong> J4 (Program Design) and J8 (Progress Reports) are the features therapists care most about. Deferring them means the MVP delivers operational value, not clinical value. Primary research must confirm this does not block adoption before scope is locked.
+  </div>
+</div>
+
+<!-- ===== DEPENDENCY CHAIN ===== -->
+<div id="panel-dc" class="tab-panel">
+  <div class="panel-header">
+    <h2>Journey Dependency Chain</h2>
+    <p>What must exist before each journey can function. J0 and J2 are the deepest blockers &mdash; nothing works without consent and enrollment. The attendance mark (J3) is the highest-fan-out node: it feeds billing, session notes, and dropout detection simultaneously.</p>
+  </div>
+  <div class="badges">
+    <span class="badge red">J0 blocks J2 blocks everything</span>
+    <span class="badge amber">J4 must exist before J7 and J8 can be built</span>
+    <span class="badge teal">Attendance mark feeds 3 downstream journeys</span>
+  </div>
+  <div class="chart-wrap">
+<pre class="mermaid">
+flowchart TD
+  classDef gate fill:#CD423A,color:#fff,stroke:#8B2E2E,stroke-width:2.5px
+  classDef inscope fill:#175F63,color:#fff,stroke:#10494C
+  classDef cascade fill:#20A6AD,color:#fff,stroke:#10494C,stroke-width:4px
+  classDef deferred fill:#fef9ee,color:#7a5800,stroke:#f0c14b,stroke-width:2px
+  classDef outscope fill:#fdf2f2,color:#9B2825,stroke:#CD423A,stroke-dasharray:5 4
+  classDef analytics fill:#646871,color:#fff,stroke:#404347
+  classDef decision fill:#fff,color:#101319,stroke:#175F63,stroke-width:2px
+
+  DC_J0[J0 DPDPA Consent] --> DC_J1[J1 Inquiry]
+  DC_J1 --> DC_J2[J2 Intake and Enrollment]
+  DC_J2 --> DC_J3[J3 Scheduling]
+  DC_J2 -.->|Deferred| DC_J4[J4 Program Design]
+  DC_J3 --> DC_ATT([Attendance Mark])
+  DC_ATT -->|Present| DC_J6[J6 Session Notes]
+  DC_ATT -->|Present| DC_J9[J9 Billing]
+  DC_ATT -->|No-show| DC_J10[J10 Dropout]
+  DC_J4 -.->|Deferred| DC_J5[J5 In-Session Data]
+  DC_J5 -.->|Deferred| DC_J7[J7 Supervisor Review]
+  DC_J6 --> DC_J7
+  DC_J7 -.->|Deferred| DC_J8[J8 Progress Reports]
+  DC_J6 --> DC_J11[J11 Analytics]
+  DC_J9 --> DC_J11
+  DC_J10 --> DC_J11
+  DC_J8 -.-> DC_J11
+
+  class DC_J0 gate
+  class DC_J1,DC_J2,DC_J3,DC_J6,DC_J9,DC_J10 inscope
+  class DC_ATT cascade
+  class DC_J4,DC_J7,DC_J8 deferred
+  class DC_J5 outscope
+  class DC_J11 analytics
+</pre>
+  </div>
+  <div class="legend">
+    <span class="legend-label">Node type</span>
+    <span class="legend-item"><span class="swatch" style="background:#CD423A"></span> Regulatory gate (J0 DPDPA)</span>
+    <span class="legend-item"><span class="swatch" style="background:#175F63"></span> In-scope MVP journeys</span>
+    <span class="legend-item"><span class="swatch" style="background:#20A6AD;border-width:3px"></span> Attendance Mark (critical cascade node)</span>
+    <span class="legend-item"><span class="swatch" style="background:#fef9ee;border:2px solid #f0c14b"></span> Deferred journeys</span>
+    <span class="legend-item"><span class="swatch" style="background:#646871"></span> Analytics (terminal sink)</span>
+  </div>
+  <div class="note warn">
+    <strong>Build sequence:</strong> J0 DPDPA consent must ship first. J2 Intake is the unlock for everything else. J3 Scheduling with its attendance mark is the highest-priority workflow feature &mdash; it feeds billing, session notes, and dropout detection in a single tap.
+  </div>
+</div>
+
+<!-- ===== J0: DPDPA CONSENT ===== -->
+<div id="panel-j0" class="tab-panel">
+  <div class="panel-header">
+    <h2>Journey 0 &mdash; DPDPA Consent Management</h2>
+    <p>Previously: J9. Regulatory prerequisite &mdash; no child health data enters the system without verifiable parental consent on file. This journey gates all others. Under DPDPA 2023, consent must be specific, informed, unconditional, and auditable.</p>
+  </div>
+  <div class="badges">
+    <span class="badge teal">Primary actor: Rahul + Meena</span>
+    <span class="badge red">DPDPA 2023 hard requirement</span>
+    <span class="badge teal">Previously: J9</span>
+    <span class="badge teal">IN SCOPE &mdash; MVP</span>
+  </div>
+  <div class="chart-wrap">
+<pre class="mermaid">
+flowchart TD
+  classDef director fill:#10494C,color:#fff,stroke:#101319
+  classDef parent fill:#EEF9F9,color:#101319,stroke:#20A6AD,stroke-width:1.5px
+  classDef dpdpa fill:#CD423A,color:#fff,stroke:#8B2E2E
+  classDef system fill:#646871,color:#fff,stroke:#404347
+  classDef decision fill:#fff,color:#101319,stroke:#175F63,stroke-width:2px
+  classDef terminal fill:#101319,color:#fff,stroke:#101319
+
+  J0_1["Staff explains: what data is collected, how stored, why"] --> J0_2[Parent reviews consent notice]
+  J0_2 --> J0_D1{Parent consents?}
+  J0_D1 -->|No - withholds consent| J0_STOP([No health data stored. Inquiry record only.])
+  J0_D1 -->|Yes| J0_3["Parent signs consent: name, mobile, timestamp, form version"]
+  J0_3 --> J0_4[Consent record written: immutable, timestamped, scoped]
+  J0_4 --> J0_5[Child profile: consent_status confirmed]
+  J0_5 --> J0_6[Clinical tabs unlocked: data entry now permitted]
+  J0_6 --> J0_END([DPDPA Gate OPEN. Journey 2 can proceed.])
+  J0_4 --> J0_7[Confirmation sent to parent via WhatsApp]
+  J0_6 --> J0_8[Right to withdraw explained and documented]
+
+  class J0_1,J0_8 director
+  class J0_2,J0_3 parent
+  class J0_4,J0_5,J0_6,J0_7 system
+  class J0_D1 decision
+  class J0_STOP,J0_END terminal
+  class J0_3 dpdpa
+</pre>
+  </div>
+  <div class="legend">
+    <span class="legend-label">Actor</span>
+    <span class="legend-item"><span class="swatch" style="background:#10494C"></span> Rahul (Director / Admin)</span>
+    <span class="legend-item"><span class="swatch" style="background:#EEF9F9;border:1.5px solid #20A6AD"></span> Meena (Parent)</span>
+    <span class="legend-item"><span class="swatch" style="background:#CD423A"></span> DPDPA consent capture</span>
+    <span class="legend-item"><span class="swatch" style="background:#646871"></span> System</span>
+  </div>
+  <div class="note warn">
+    <strong>DPDPA 2023 compliance:</strong> Consent must be write-once and immutable. Pre-checked boxes are not permitted. If parent is not present, flag as staff-assisted verbal consent and require digital confirmation at next visit. No child health data may be entered until consent_status = confirmed.
+  </div>
+  <div class="note tip">
+    <strong>H-06 (High risk):</strong> We believe Indian centers currently have no DPDPA-compliant consent flow. Paper consent forms do not reference digital data processing. This must be validated in primary fieldwork before launch.
+  </div>
+</div>
+
+<!-- ===== J1: FAMILY INQUIRY ===== -->
+<div id="panel-j1" class="tab-panel">
+  <div class="panel-header">
+    <h2>Journey 1 &mdash; Family Inquiry and First Contact</h2>
+    <p>Previously: J1 (inquiry phase). From a parent's first WhatsApp or phone call through to a scheduled intake appointment. This is the CRM and lead-capture workflow. No health data is collected here &mdash; DPDPA does not apply until Journey 2.</p>
+  </div>
+  <div class="badges">
+    <span class="badge teal">Primary actor: Rahul (Director)</span>
+    <span class="badge teal">Supporting: Meena</span>
+    <span class="badge gray">No DPDPA gate at this stage</span>
+    <span class="badge teal">IN SCOPE &mdash; MVP</span>
+  </div>
+  <div class="chart-wrap">
+<pre class="mermaid">
+flowchart TD
+  classDef director fill:#10494C,color:#fff,stroke:#101319
+  classDef parent fill:#EEF9F9,color:#101319,stroke:#20A6AD,stroke-width:1.5px
+  classDef system fill:#646871,color:#fff,stroke:#404347
+  classDef decision fill:#fff,color:#101319,stroke:#175F63,stroke-width:2px
+  classDef terminal fill:#101319,color:#fff,stroke:#101319
+
+  J1_1[Parent contacts center via WhatsApp or phone] --> J1_2[Rahul opens New Inquiry form]
+  J1_2 --> J1_3["Fills: child name, age, diagnosis, parent name, mobile"]
+  J1_3 --> J1_D1{Duplicate mobile found?}
+  J1_D1 -->|Yes| J1_DUP[Review existing record or confirm separate]
+  J1_D1 -->|No| J1_4[Inquiry record created - status: Inquiry]
+  J1_4 --> J1_5[Rahul schedules intake appointment]
+  J1_5 --> J1_6[System sends T-24h reminder to parent]
+  J1_6 --> J1_7[Inquiry status updated: Intake Scheduled]
+  J1_7 --> J1_8[Inquiry visible in pipeline view]
+  J1_8 --> J1_D2{Parent responds to reminder?}
+  J1_D2 -->|Confirms| J1_END([Intake confirmed. Journey 2 begins.])
+  J1_D2 -->|No response 48h| J1_9[Follow-up flag raised for Rahul]
+  J1_9 --> J1_10[Rahul manually follows up via WhatsApp]
+
+  class J1_2,J1_3,J1_5,J1_10 director
+  class J1_1 parent
+  class J1_4,J1_6,J1_7,J1_8,J1_9 system
+  class J1_D1,J1_D2 decision
+  class J1_END terminal
+</pre>
+  </div>
+  <div class="legend">
+    <span class="legend-label">Actor</span>
+    <span class="legend-item"><span class="swatch" style="background:#10494C"></span> Rahul (Director)</span>
+    <span class="legend-item"><span class="swatch" style="background:#EEF9F9;border:1.5px solid #20A6AD"></span> Meena (Parent)</span>
+    <span class="legend-item"><span class="swatch" style="background:#646871"></span> System</span>
+  </div>
+  <div class="note tip">
+    <strong>H-04 (High risk):</strong> We believe inquiry details currently live in WhatsApp scroll history with no structured record. Centers have no pipeline visibility. This workflow is new territory &mdash; validate that directors are willing to change this behavior in primary research.
+  </div>
+</div>
+
+<!-- ===== J2: INTAKE AND ENROLLMENT ===== -->
+<div id="panel-j2" class="tab-panel">
+  <div class="panel-header">
+    <h2>Journey 2 &mdash; Intake and Enrollment</h2>
+    <p>Previously: J1 (enrollment phase). From the family arriving at the center through to an enrolled child with a confirmed DPDPA consent record, a completed intake form, all documents uploaded, a therapist assigned, and the first session scheduled. DPDPA consent is the critical gate at step 3.</p>
+  </div>
+  <div class="badges">
+    <span class="badge teal">Primary actor: Rahul</span>
+    <span class="badge teal">Supporting: Dr. Sunita, Meena</span>
+    <span class="badge red">DPDPA gate at step 3</span>
+    <span class="badge teal">IN SCOPE &mdash; MVP</span>
+  </div>
+  <div class="chart-wrap">
+<pre class="mermaid">
+flowchart TD
+  classDef director fill:#10494C,color:#fff,stroke:#101319
+  classDef supervisor fill:#175F63,color:#fff,stroke:#10494C
+  classDef therapist fill:#20A6AD,color:#fff,stroke:#175F63
+  classDef parent fill:#EEF9F9,color:#101319,stroke:#20A6AD,stroke-width:1.5px
+  classDef dpdpa fill:#CD423A,color:#fff,stroke:#8B2E2E
+  classDef system fill:#646871,color:#fff,stroke:#404347
+  classDef decision fill:#fff,color:#101319,stroke:#175F63,stroke-width:2px
+  classDef terminal fill:#101319,color:#fff,stroke:#101319
+
+  J2_1[Family arrives for intake appointment] --> J2_2[Developmental history interview]
+  J2_2 --> J2_3["Documents collected: diagnosis, UDID, prior therapy reports"]
+  J2_3 --> J2_DPDPA([J0 DPDPA Consent captured here])
+  J2_DPDPA --> J2_D1{Consent confirmed?}
+  J2_D1 -->|No| J2_LOCK[Child record created. Clinical tabs locked.]
+  J2_D1 -->|Yes| J2_4[Child record unlocked. All clinical tabs active.]
+  J2_4 --> J2_5[Intake form completed by parent]
+  J2_5 --> J2_6[Documents uploaded to secure record]
+  J2_6 --> J2_7[Therapist and supervisor assigned to care team]
+  J2_7 --> J2_8[First session scheduled in calendar]
+  J2_8 --> J2_9[Parent receives T-24h and T-2h reminders]
+  J2_9 --> J2_END([Enrollment complete. Journey 3 begins.])
+
+  class J2_1,J2_3,J2_7,J2_8 director
+  class J2_2 supervisor
+  class J2_5 parent
+  class J2_DPDPA dpdpa
+  class J2_4,J2_6,J2_9 system
+  class J2_D1 decision
+  class J2_LOCK terminal
+  class J2_END terminal
+</pre>
+  </div>
+  <div class="legend">
+    <span class="legend-label">Actor</span>
+    <span class="legend-item"><span class="swatch" style="background:#10494C"></span> Rahul (Director)</span>
+    <span class="legend-item"><span class="swatch" style="background:#175F63"></span> Dr. Sunita (Supervisor)</span>
+    <span class="legend-item"><span class="swatch" style="background:#EEF9F9;border:1.5px solid #20A6AD"></span> Meena (Parent)</span>
+    <span class="legend-item"><span class="swatch" style="background:#CD423A"></span> DPDPA consent gate</span>
+    <span class="legend-item"><span class="swatch" style="background:#646871"></span> System</span>
+  </div>
+  <div class="note warn">
+    <strong>BP-04 (Critical break point):</strong> No standardized intake protocol exists in Indian autism centers. Documentation is collected ad hoc. DPDPA non-compliance is the highest regulatory risk in the platform &mdash; it begins at this step.
+  </div>
+</div>
+
+<!-- ===== J3: SCHEDULING AND ATTENDANCE ===== -->
+<div id="panel-j3" class="tab-panel">
+  <div class="panel-header">
+    <h2>Journey 3 &mdash; Scheduling and Attendance Management</h2>
+    <p>Previously: J6. Weekly schedule creation, session reminders, and the attendance mark &mdash; the platform's highest-frequency workflow. The attendance mark feeds billing, session notes, and dropout detection simultaneously. Must be operable in 2 taps on a low-end Android device, offline-first.</p>
+  </div>
+  <div class="badges">
+    <span class="badge teal">Primary actors: Rahul + Priya</span>
+    <span class="badge red">Critical: 2 taps max from home screen</span>
+    <span class="badge red">Offline-first required</span>
+    <span class="badge teal">IN SCOPE &mdash; MVP</span>
+  </div>
+  <div class="chart-wrap">
+<pre class="mermaid">
+flowchart TD
+  classDef director fill:#10494C,color:#fff,stroke:#101319
+  classDef therapist fill:#20A6AD,color:#fff,stroke:#175F63
+  classDef parent fill:#EEF9F9,color:#101319,stroke:#20A6AD,stroke-width:1.5px
+  classDef system fill:#646871,color:#fff,stroke:#404347
+  classDef decision fill:#fff,color:#101319,stroke:#175F63,stroke-width:2px
+  classDef terminal fill:#101319,color:#fff,stroke:#101319
+  classDef cascade fill:#20A6AD,color:#fff,stroke:#10494C,stroke-width:4px
+
+  J3_1[Rahul creates weekly schedule] --> J3_2[Assigns child to therapist and room]
+  J3_2 --> J3_D1{Therapist conflict?}
+  J3_D1 -->|Yes| J3_CONF[Conflict shown. Resolve before saving.]
+  J3_D1 -->|No| J3_3[Sessions created 12 weeks forward]
+  J3_3 --> J3_4[T-24h reminder sent to parent]
+  J3_3 --> J3_5[T-2h reminder sent to parent]
+  J3_5 --> J3_ATT([Priya marks attendance. 2 taps max. Offline-first.])
+  J3_ATT --> J3_D2{Attendance status?}
+  J3_D2 -->|Present| J3_P1[Billing queue updated]
+  J3_D2 -->|Present| J3_P2[Session Notes available in Journey 6]
+  J3_D2 -->|No-show| J3_NS[Follow-up fires in 30 min to parent]
+  J3_D2 -->|Absent| J3_AB[Reason recorded. No billing. No follow-up.]
+  J3_NS --> J3_DR[Dropout risk counter incremented]
+  J3_P1 --> J3_END([Session recorded. Feeds J9 Billing and J11 Analytics.])
+
+  class J3_1,J3_2 director
+  class J3_ATT cascade
+  class J3_P2 therapist
+  class J3_4,J3_5,J3_P1,J3_NS,J3_DR,J3_3 system
+  class J3_D1,J3_D2 decision
+  class J3_CONF terminal
+  class J3_END terminal
+</pre>
+  </div>
+  <div class="legend">
+    <span class="legend-label">Actor</span>
+    <span class="legend-item"><span class="swatch" style="background:#10494C"></span> Rahul (Director)</span>
+    <span class="legend-item"><span class="swatch" style="background:#20A6AD;border-width:3px"></span> Attendance Mark (critical cascade node)</span>
+    <span class="legend-item"><span class="swatch" style="background:#646871"></span> System</span>
+  </div>
+  <div class="note info">
+    <strong>Design constraint:</strong> Attendance mark is the highest-frequency action in the platform. Priya marks it one-handed while managing a child. Must be reachable in 2 taps from home screen. Haptic confirmation required (noisy environment). Must function offline and sync on restore.
+  </div>
+  <div class="note tip">
+    <strong>Key evidence:</strong> No-show rate drops from 39% to 3% when structured session reminders are in place. (Psychiatric Services study.) The T-24h and T-2h reminders in this journey are the highest-ROI feature in the platform.
+  </div>
+</div>
+
+<!-- ===== J4: CLINICAL PROGRAM DESIGN (DEFERRED) ===== -->
+<div id="panel-j4" class="tab-panel">
+  <div class="panel-header">
+    <h2 class="deferred-title">Journey 4 &mdash; Clinical Program Design &mdash; DEFERRED</h2>
+    <p>Previously: J2. Deferred from MVP (22 April 2026). Requires net-new build &mdash; existing EMR components cannot be reused. The individualized therapy program is designed by the clinical supervisor, handed to the therapist, and communicated to parents. Currently done on paper and in Word.</p>
+  </div>
+  <div class="badges">
+    <span class="badge amber">DEFERRED &mdash; Post-MVP</span>
+    <span class="badge amber">Decision: 22 April 2026</span>
+    <span class="badge amber">Previously: J2</span>
+    <span class="badge red">Adoption risk if deferred too long</span>
+  </div>
+  <div class="chart-wrap">
+<pre class="mermaid">
+flowchart TD
+  classDef supervisor fill:#175F63,color:#fff,stroke:#10494C
+  classDef therapist fill:#20A6AD,color:#fff,stroke:#175F63
+  classDef parent fill:#EEF9F9,color:#101319,stroke:#20A6AD,stroke-width:1.5px
+  classDef deferred fill:#fef9ee,color:#7a5800,stroke:#f0c14b,stroke-width:2px
+  classDef decision fill:#fff,color:#101319,stroke:#f0c14b,stroke-width:2px
+  classDef terminal fill:#7a5800,color:#fff,stroke:#f0c14b
+  classDef risk fill:#CD423A,color:#fff,stroke:#8B2E2E
+
+  J4_NOTE([DEFERRED - Post-MVP. Conceptual flow below.]) --> J4_1["Assessment: ISAA, CARS, Vineland - 1 to 3 sessions"]
+  J4_1 --> J4_2[Baseline profile compiled per domain]
+  J4_2 --> J4_3["Targets selected: communication, social, adaptive, maladaptive"]
+  J4_3 --> J4_4[Individualized therapy program written]
+  J4_4 --> J4_5[Program approved by clinical supervisor]
+  J4_5 --> J4_D1{Handover to therapist}
+  J4_D1 -->|Verbal only - current state| J4_RISK([Risk: Priya misremembers targets or prompt levels])
+  J4_D1 -->|Digital record - future state| J4_6[Program accessible on Priya device]
+  J4_6 --> J4_7[Parent program summary shared]
+  J4_7 --> J4_END([Program active. Journey 5 or Journey 3 begins.])
+
+  class J4_1,J4_2,J4_3,J4_4,J4_5 supervisor
+  class J4_6 therapist
+  class J4_7 parent
+  class J4_NOTE deferred
+  class J4_D1 decision
+  class J4_RISK risk
+  class J4_END terminal
+</pre>
+  </div>
+  <div class="note tip">
+    <strong>Why deferred:</strong> J4 requires net-new build. EMR reuse is not possible. The decision accepted the risk that therapist adoption may be lower without clinical differentiation features. Primary research must determine whether this is a blocker.
+  </div>
+  <div class="note warn">
+    <strong>BP-07:</strong> The current verbal program handover is a high-risk break point. Priya may run sessions against the wrong targets or prompt levels. This is one of the strongest arguments for prioritizing J4 in the post-MVP sprint.
+  </div>
+</div>
+
+<!-- ===== J5: IN-SESSION DATA COLLECTION (OUT OF SCOPE) ===== -->
+<div id="panel-j5" class="tab-panel">
+  <div class="panel-header">
+    <h2 class="outscope-title">Journey 5 &mdash; In-Session Data Collection &mdash; OUT OF SCOPE (India MVP)</h2>
+    <p>No prior J-number &mdash; always out of scope for India. Indian therapy is out-of-pocket; no reimbursement system requires trial-level data logging. Strong future opportunity for US and international markets. Conceptual flow shown for post-MVP planning.</p>
+  </div>
+  <div class="badges">
+    <span class="badge red">OUT OF SCOPE &mdash; India MVP</span>
+    <span class="badge gray">Future: US/international markets</span>
+    <span class="badge red">No prior J-number</span>
+    <span class="badge amber">Foundational break point if deferred long-term</span>
+  </div>
+  <div class="chart-wrap">
+<pre class="mermaid">
+flowchart TD
+  classDef therapist fill:#20A6AD,color:#fff,stroke:#175F63
+  classDef system fill:#646871,color:#fff,stroke:#404347
+  classDef outscope fill:#fdf2f2,color:#9B2825,stroke:#CD423A,stroke-dasharray:6 3
+  classDef decision fill:#fff,color:#101319,stroke:#CD423A,stroke-width:2px
+  classDef terminal fill:#9B2825,color:#fff,stroke:#CD423A
+  classDef risk fill:#CD423A,color:#fff,stroke:#8B2E2E
+
+  J5_NOTE([OUT OF SCOPE India MVP. US/international future.]) --> J5_1["Session starts: Priya with child, program loaded"]
+  J5_1 --> J5_2[Target selected from active program - 1 tap]
+  J5_2 --> J5_3[Discrete trial conducted with child]
+  J5_3 --> J5_D1{Trial outcome - 1 tap}
+  J5_D1 -->|Correct| J5_C[Correct recorded. Haptic confirm.]
+  J5_D1 -->|Incorrect| J5_I[Incorrect recorded. Haptic confirm.]
+  J5_D1 -->|Prompted| J5_P[Prompted recorded. Haptic confirm.]
+  J5_C & J5_I & J5_P --> J5_4{Maladaptive behavior?}
+  J5_4 -->|No| J5_NEXT{More trials?}
+  J5_4 -->|Yes| J5_5[Frequency counter tapped. Optional ABC capture.]
+  J5_5 --> J5_NEXT
+  J5_NEXT -->|Yes| J5_3
+  J5_NEXT -->|Session end| J5_6[Session data synced to supervisor without paper]
+  J5_6 --> J5_END([Journey 7: Supervisor Review - deferred])
+
+  class J5_1,J5_2,J5_3,J5_C,J5_I,J5_P,J5_5 therapist
+  class J5_6 system
+  class J5_NOTE outscope
+  class J5_D1,J5_4,J5_NEXT decision
+  class J5_END terminal
+</pre>
+  </div>
+  <div class="note warn">
+    <strong>Why this matters long-term:</strong> In-session data is the foundational break point in the platform. Every downstream feature &mdash; supervisor review, progress reports, clinical trend analysis &mdash; depends on the quality of data captured here. The MVP accepts degraded data quality by design. Monitor Indian market willingness to adopt in-session digital recording even without a reimbursement driver.
+  </div>
+  <div class="note info">
+    <strong>Design constraints for when this is built:</strong> One-handed operation. 2 taps max to record a trial. Haptic feedback mandatory (noisy environment). Offline-first. Runs on low-end Android (Redmi, Realme). No audio alerts during active session.
+  </div>
+</div>
+
+<!-- ===== J6: SESSION NOTES ===== -->
+<div id="panel-j6" class="tab-panel">
+  <div class="panel-header">
+    <h2>Journey 6 &mdash; Session Notes / Clinical Notes</h2>
+    <p>Previously: J3. Post-session documentation written by the therapist after each session. Replaces the current paper/WhatsApp note workflow. Session notes are the data foundation for progress reports (J8, deferred) &mdash; structured digital notes now make semi-automated reporting possible later.</p>
+  </div>
+  <div class="badges">
+    <span class="badge teal">Primary actor: Priya (therapist)</span>
+    <span class="badge teal">Supporting: Dr. Sunita (review)</span>
+    <span class="badge red">DPDPA: replaces unencrypted WhatsApp transmission</span>
+    <span class="badge teal">IN SCOPE &mdash; MVP</span>
+  </div>
+  <div class="chart-wrap">
+<pre class="mermaid">
+flowchart TD
+  classDef supervisor fill:#175F63,color:#fff,stroke:#10494C
+  classDef therapist fill:#20A6AD,color:#fff,stroke:#175F63
+  classDef system fill:#646871,color:#fff,stroke:#404347
+  classDef decision fill:#fff,color:#101319,stroke:#175F63,stroke-width:2px
+  classDef terminal fill:#101319,color:#fff,stroke:#101319
+  classDef dpdpa fill:#CD423A,color:#fff,stroke:#8B2E2E
+
+  J6_1[Session ends. Child leaves room.] --> J6_2[Priya opens session record in app]
+  J6_2 --> J6_3["Selects goals addressed (multi-select from active program)"]
+  J6_3 --> J6_4["Writes note: child mood, activities, behavioral incidents, observations"]
+  J6_4 --> J6_5[Saves note. Haptic confirm. Status: Pending Review.]
+  J6_5 --> J6_6["Note appears in Dr. Sunita review queue within 30s of sync"]
+  J6_6 --> J6_D1{Supervisor action}
+  J6_D1 -->|Approve| J6_7[Note status: Reviewed and approved]
+  J6_D1 -->|Flag concern| J6_8[Concern flagged. Escalation to director if needed.]
+  J6_D1 -->|Edit before approving| J6_9[Supervisor adds clinical observation]
+  J6_7 --> J6_END([Note archived. Feeds J8 Progress Reports when built.])
+
+  class J6_1,J6_2,J6_3,J6_4,J6_5 therapist
+  class J6_6,J6_7,J6_9 supervisor
+  class J6_8 system
+  class J6_D1 decision
+  class J6_END terminal
+</pre>
+  </div>
+  <div class="legend">
+    <span class="legend-label">Actor</span>
+    <span class="legend-item"><span class="swatch" style="background:#20A6AD"></span> Priya (Therapist)</span>
+    <span class="legend-item"><span class="swatch" style="background:#175F63"></span> Dr. Sunita (Supervisor)</span>
+    <span class="legend-item"><span class="swatch" style="background:#646871"></span> System</span>
+  </div>
+  <div class="note info">
+    <strong>Dependency note:</strong> Structured session notes created in J6 are the prerequisite data source for J8 (Progress Reports, deferred). Building J6 well now reduces the build cost of J8 later. Without J6 data, J8 cannot auto-populate and the documentation burden stays on the supervisor.
+  </div>
+</div>
+
+<!-- ===== J7: SUPERVISOR REVIEW (DEFERRED) ===== -->
+<div id="panel-j7" class="tab-panel">
+  <div class="panel-header">
+    <h2 class="deferred-title">Journey 7 &mdash; Supervisor Review and Program Updates &mdash; DEFERRED</h2>
+    <p>Previously: J2 (extension). Deferred from MVP (22 April 2026). Depends on J4 (Program Design) existing in the system first. Supervisor review of individual session notes (J6) is in scope &mdash; what is deferred is the structured clinical workflow of modifying targets, prompt levels, and reinforcement schedules.</p>
+  </div>
+  <div class="badges">
+    <span class="badge amber">DEFERRED &mdash; Post-MVP</span>
+    <span class="badge amber">Depends on J4 being built first</span>
+    <span class="badge amber">Previously: J2 (extension)</span>
+  </div>
+  <div class="chart-wrap">
+<pre class="mermaid">
+flowchart TD
+  classDef supervisor fill:#175F63,color:#fff,stroke:#10494C
+  classDef therapist fill:#20A6AD,color:#fff,stroke:#175F63
+  classDef deferred fill:#fef9ee,color:#7a5800,stroke:#f0c14b,stroke-width:2px
+  classDef decision fill:#fff,color:#101319,stroke:#f0c14b,stroke-width:2px
+  classDef terminal fill:#7a5800,color:#fff,stroke:#f0c14b
+  classDef risk fill:#CD423A,color:#fff,stroke:#8B2E2E
+
+  J7_NOTE([DEFERRED. Requires J4 Program Design to exist first.]) --> J7_1[Supervisor opens caseload dashboard]
+  J7_1 --> J7_2["Reviews session data per child per target"]
+  J7_2 --> J7_3["Calculates % correct across sessions"]
+  J7_3 --> J7_D1{Target status?}
+  J7_D1 -->|Mastered| J7_4["Advance: fade prompts or generalize to new contexts"]
+  J7_D1 -->|Plateauing| J7_5["Modify: change procedure, prompt level, or reinforcer"]
+  J7_D1 -->|Regressing| J7_6[Flag: urgent clinical review required]
+  J7_4 & J7_5 & J7_6 --> J7_7[Updated program published to digital record]
+  J7_7 --> J7_8[Priya notified of program changes]
+  J7_8 --> J7_D2{Priya acknowledges?}
+  J7_D2 -->|Acknowledged| J7_END([Updated program active for next session])
+  J7_D2 -->|No ack in 24h| J7_9[Escalation flag to supervisor]
+
+  class J7_1,J7_2,J7_3,J7_4,J7_5,J7_6,J7_7 supervisor
+  class J7_8,J7_9 therapist
+  class J7_NOTE deferred
+  class J7_D1,J7_D2 decision
+  class J7_END terminal
+</pre>
+  </div>
+  <div class="note tip">
+    <strong>BP-02:</strong> With paper, supervisor review happens in batch every 1-2 weeks. A child may run an outdated program target for weeks before the supervisor notices. Digital program management eliminates this lag and is one of the strongest clinical value propositions in the platform.
+  </div>
+</div>
+
+<!-- ===== J8: PROGRESS REPORTS (DEFERRED) ===== -->
+<div id="panel-j8" class="tab-panel">
+  <div class="panel-header">
+    <h2 class="deferred-title">Journey 8 &mdash; Progress Reporting to Parents &mdash; DEFERRED</h2>
+    <p>Previously: J4. Deferred from MVP (22 April 2026). Depends on structured session data (J6) and digital program records (J4) existing first. Monthly or quarterly reports auto-populated from session notes and reviewed by the supervisor before delivery to parents.</p>
+  </div>
+  <div class="badges">
+    <span class="badge amber">DEFERRED &mdash; Post-MVP</span>
+    <span class="badge amber">Depends on J4 + J6</span>
+    <span class="badge red">Adoption risk: parents need to see progress</span>
+    <span class="badge amber">Previously: J4</span>
+  </div>
+  <div class="chart-wrap">
+<pre class="mermaid">
+flowchart TD
+  classDef supervisor fill:#175F63,color:#fff,stroke:#10494C
+  classDef parent fill:#EEF9F9,color:#101319,stroke:#20A6AD,stroke-width:1.5px
+  classDef system fill:#646871,color:#fff,stroke:#404347
+  classDef deferred fill:#fef9ee,color:#7a5800,stroke:#f0c14b,stroke-width:2px
+  classDef decision fill:#fff,color:#101319,stroke:#f0c14b,stroke-width:2px
+  classDef terminal fill:#7a5800,color:#fff,stroke:#f0c14b
+
+  J8_NOTE([DEFERRED. Requires J4 + J6 data to exist.]) --> J8_1[Reporting cycle triggered monthly or quarterly]
+  J8_1 --> J8_2[Supervisor opens progress report for child]
+  J8_2 --> J8_3["Session data auto-populated from J6 session notes"]
+  J8_3 --> J8_4["Supervisor edits narrative per domain: communication, adaptive, social"]
+  J8_4 --> J8_5[Home program section updated]
+  J8_5 --> J8_D1{Report approved?}
+  J8_D1 -->|Needs revision| J8_4
+  J8_D1 -->|Approved| J8_6[Report sent to parent via secure portal]
+  J8_6 --> J8_7["Parent views report in plain language (not clinical jargon)"]
+  J8_7 --> J8_8[Parent acknowledges home program activities]
+  J8_8 --> J8_END([Report archived. Home program active. Next cycle begins.])
+
+  class J8_1,J8_2,J8_3,J8_4,J8_5 supervisor
+  class J8_6,J8_7,J8_8 parent
+  class J8_NOTE deferred
+  class J8_D1 decision
+  class J8_END terminal
+</pre>
+  </div>
+  <div class="note warn">
+    <strong>BP-03:</strong> Progress reports are currently written from scratch each cycle with no carry-forward. Dr. Sunita spends estimated 2-3 hours per day on documentation globally. Auto-population from J6 session notes will be the primary time-saving mechanism in this journey.
+  </div>
+  <div class="note tip">
+    <strong>H-13 (Medium risk):</strong> We believe parents receive reports in clinical language they do not understand. Report language accessibility is a key design requirement for J8 &mdash; validate with parent interviews before speccing the report format.
+  </div>
+</div>
+
+<!-- ===== J9: BILLING ===== -->
+<div id="panel-j9" class="tab-panel">
+  <div class="panel-header">
+    <h2>Journey 9 &mdash; Billing and Fee Collection</h2>
+    <p>Previously: J5. Attendance-driven invoice generation and payment collection via UPI, cash, or cheque. Replaces the current WhatsApp message and paper receipt workflow. Automated reminders reduce the social discomfort of fee conversations and improve collection rate.</p>
+  </div>
+  <div class="badges">
+    <span class="badge teal">Primary actor: Rahul (Director)</span>
+    <span class="badge teal">Supporting: Meena</span>
+    <span class="badge teal">UPI + cash + cheque collection</span>
+    <span class="badge teal">IN SCOPE &mdash; MVP</span>
+  </div>
+  <div class="chart-wrap">
+<pre class="mermaid">
+flowchart TD
+  classDef director fill:#10494C,color:#fff,stroke:#101319
+  classDef parent fill:#EEF9F9,color:#101319,stroke:#20A6AD,stroke-width:1.5px
+  classDef system fill:#646871,color:#fff,stroke:#404347
+  classDef decision fill:#fff,color:#101319,stroke:#175F63,stroke-width:2px
+  classDef terminal fill:#101319,color:#fff,stroke:#101319
+
+  J9_1[Month-end billing cycle triggered] --> J9_2["Attendance data aggregated per child from J3"]
+  J9_2 --> J9_3["Invoice calculated: sessions delivered x fee structure"]
+  J9_3 --> J9_4[Fee reminder sent to parent via WhatsApp]
+  J9_4 --> J9_D1{Payment received?}
+  J9_D1 -->|UPI or Cash - immediate| J9_5[Payment recorded. Invoice closed.]
+  J9_D1 -->|No response 7 days| J9_6[Overdue reminder triggered automatically]
+  J9_D1 -->|Financial difficulty| J9_7[Waiver or instalment plan negotiated]
+  J9_6 --> J9_D1
+  J9_5 --> J9_8[Revenue record updated in financial dashboard]
+  J9_8 --> J9_END([Invoice archived. Feeds J11 Analytics.])
+  J9_7 --> J9_9[Custom payment arrangement recorded]
+  J9_9 --> J9_5
+
+  class J9_1,J9_3,J9_4,J9_7 director
+  class J9_D1 decision
+  class J9_2,J9_5,J9_6,J9_8 system
+  class J9_END terminal
+</pre>
+  </div>
+  <div class="note tip">
+    <strong>H-09:</strong> Billing conversations are socially uncomfortable for directors with financially stressed families. Automated reminders remove the awkward manual message and reduce the emotional cost of fee collection. Validate whether directors would actually activate automated reminders in primary research.
+  </div>
+</div>
+
+<!-- ===== J10: DROPOUT PREVENTION ===== -->
+<div id="panel-j10" class="tab-panel">
+  <div class="panel-header">
+    <h2>Journey 10 &mdash; Appointment Follow-Up and Dropout Prevention</h2>
+    <p>Previously: J7. Triggered by a no-show attendance mark in J3. Automated follow-up fires within 30 minutes. Escalation protocol activates at 3+ no-shows in 30 days. Dropout in Indian autism therapy centers is an "invisible exit" &mdash; families withdraw silently without formal notification.</p>
+  </div>
+  <div class="badges">
+    <span class="badge teal">Primary actor: Rahul + System</span>
+    <span class="badge teal">Supporting: Meena, Dr. Sunita</span>
+    <span class="badge red">Evidence: 39% no-show drops to 3% with live contact</span>
+    <span class="badge teal">IN SCOPE &mdash; MVP</span>
+  </div>
+  <div class="chart-wrap">
+<pre class="mermaid">
+flowchart TD
+  classDef director fill:#10494C,color:#fff,stroke:#101319
+  classDef parent fill:#EEF9F9,color:#101319,stroke:#20A6AD,stroke-width:1.5px
+  classDef system fill:#646871,color:#fff,stroke:#404347
+  classDef decision fill:#fff,color:#101319,stroke:#175F63,stroke-width:2px
+  classDef terminal fill:#101319,color:#fff,stroke:#101319
+  classDef risk fill:#CD423A,color:#fff,stroke:#8B2E2E
+
+  J10_1[Child marked No-show in J3] --> J10_2[Automated WhatsApp follow-up fires within 30 min]
+  J10_2 --> J10_D1{Parent responds?}
+  J10_D1 -->|Yes - reason given| J10_3[Reason logged. Session rescheduled.]
+  J10_D1 -->|No response 48h| J10_4["Dropout risk flag raised on child record"]
+  J10_4 --> J10_5[Director outreach: call or personalised WhatsApp]
+  J10_5 --> J10_D2{Outcome of outreach?}
+  J10_D2 -->|Re-engaged| J10_6[New sessions scheduled. Risk flag cleared.]
+  J10_D2 -->|Declined| J10_7[Formal discharge workflow initiated]
+  J10_D2 -->|No response| J10_8[Passive dropout. Record flagged for 30-day review.]
+  J10_9[3+ no-shows in 30 days: High Risk badge on dashboard] --> J10_5
+
+  class J10_5 director
+  class J10_D1,J10_D2 decision
+  class J10_1,J10_2,J10_4,J10_9 system
+  class J10_3,J10_6,J10_7,J10_8 terminal
+  class J10_4 risk
+</pre>
+  </div>
+  <div class="note info">
+    <strong>Key evidence:</strong> 39% no-show rate without any reminder drops to 3% with live call contact. (Psychiatric Services study.) This is the sharpest evidence point in the platform's entire research base. Structured follow-up is the highest-ROI feature in dropout prevention.
+  </div>
+  <div class="note warn">
+    <strong>H-10:</strong> We believe the current intervention is a single WhatsApp message with no escalation protocol. Validate in primary research. If confirmed, the automated multi-step escalation in this journey represents a step-change improvement over current practice.
+  </div>
+</div>
+
+<!-- ===== J11: ANALYTICS DASHBOARD ===== -->
+<div id="panel-j11" class="tab-panel">
+  <div class="panel-header">
+    <h2>Journey 11 &mdash; Analytics Dashboard</h2>
+    <p>Previously: J8. Center-level operational visibility for the director. Aggregates attendance, billing, dropout risk, and staff utilization into a single view. Replaces the current mental model + monthly Excel reconciliation that Rahul uses today. Dashboard-to-action navigation links directly to the relevant journey.</p>
+  </div>
+  <div class="badges">
+    <span class="badge teal">Primary actor: Rahul (Director)</span>
+    <span class="badge gray">Fed by J3, J6, J9, J10</span>
+    <span class="badge teal">IN SCOPE &mdash; MVP</span>
+  </div>
+  <div class="chart-wrap">
+<pre class="mermaid">
+flowchart TD
+  classDef director fill:#10494C,color:#fff,stroke:#101319
+  classDef system fill:#646871,color:#fff,stroke:#404347
+  classDef decision fill:#fff,color:#101319,stroke:#175F63,stroke-width:2px
+  classDef terminal fill:#101319,color:#fff,stroke:#101319
+
+  J11_1[Rahul opens analytics dashboard] --> J11_2[Today: sessions scheduled vs. delivered]
+  J11_2 --> J11_3["Billing: invoices sent, outstanding, collected this month"]
+  J11_3 --> J11_4["Dropout risk: children with 3+ no-shows flagged with badge"]
+  J11_4 --> J11_5["Staff utilization: sessions delivered vs. capacity per therapist"]
+  J11_5 --> J11_D1{Action needed?}
+  J11_D1 -->|Dropout risk child| J11_6["Navigate to Journey 10: contact family"]
+  J11_D1 -->|Outstanding fees| J11_7["Navigate to Journey 9: billing follow-up"]
+  J11_D1 -->|Schedule gap| J11_8["Navigate to Journey 3: reschedule"]
+  J11_D1 -->|Unmarked attendance| J11_9["Prompt Priya to mark outstanding sessions"]
+  J11_D1 -->|All clear| J11_END([Center operating normally])
+
+  class J11_1,J11_6,J11_7,J11_8,J11_9 director
+  class J11_2,J11_3,J11_4,J11_5 system
+  class J11_D1 decision
+  class J11_END terminal
+</pre>
+  </div>
+  <div class="note info">
+    <strong>Design principle:</strong> Dashboard should surface what needs action, not present a data grid Rahul must interpret. Three priority views: (1) Today - attendance, (2) This month - billing, (3) At risk - dropout. Drill-down navigates directly into the relevant journey.
+  </div>
+</div>
+
+<!-- ===== HYPOTHESES ===== -->
+<div id="panel-hy" class="tab-panel">
+  <div class="panel-header">
+    <h2>Hypothesis Register &mdash; 18 Hypotheses to Validate</h2>
+    <p>All unvalidated beliefs underpinning the product. Evidence base is secondary research only. Primary fieldwork at 3&ndash;5 Indian therapy centers is required before any design work begins. High-risk hypotheses must be validated before MVP scope is locked.</p>
+  </div>
+  <div class="badges">
+    <span class="badge red">7 High-risk &mdash; validate first</span>
+    <span class="badge amber">5 Medium-risk &mdash; validate second</span>
+    <span class="badge gray">6 Medium-risk &mdash; validate third</span>
+  </div>
+
+  <div class="chart-wrap" style="text-align:left; overflow-x:auto;">
+<pre class="mermaid">
+quadrantChart
+  title Hypothesis Priority Map (Centrality vs Uncertainty)
+  x-axis Low Uncertainty --> High Uncertainty
+  y-axis Low Centrality --> High Centrality
+  quadrant-1 Validate First
+  quadrant-2 Define Validation Method
+  quadrant-3 Monitor
+  quadrant-4 Validate Design Only
+  H-01 In-session paper recording: [0.9, 0.95]
+  H-02 Therapist digital training gap: [0.9, 0.85]
+  H-03 Offline-first hard requirement: [0.9, 0.80]
+  H-05 Verbal program handover: [0.85, 0.90]
+  H-06 DPDPA non-compliance at intake: [0.65, 0.88]
+  H-07 Supervisor out-of-hours docs: [0.88, 0.82]
+  H-17 Reports from scratch each cycle: [0.65, 0.85]
+  H-04 No inquiry pipeline: [0.88, 0.55]
+  H-09 Fee collection discomfort: [0.65, 0.70]
+  H-10 Single WhatsApp dropout response: [0.55, 0.72]
+  H-13 Parents cannot read reports: [0.85, 0.55]
+  H-16 English UI acceptable: [0.85, 0.50]
+  H-08 Informal treatment plans: [0.55, 0.48]
+  H-11 Cognitivebotics gap: [0.55, 0.45]
+  H-12 WhatsApp-only billing: [0.55, 0.50]
+  H-14 WhatsApp photo data sheets: [0.85, 0.45]
+  H-15 UDID retrospective: [0.85, 0.30]
+  H-18 Dropout as inevitable: [0.55, 0.45]
+</pre>
+  </div>
+
+  <p class="section-sub" style="margin-top:20px;">Validate First &mdash; Core Product Risk (7 hypotheses)</p>
+  <div style="overflow-x:auto;">
+  <table class="data-table">
+    <thead><tr><th>#</th><th>Hypothesis</th><th>Journey</th><th>Risk</th><th>Method</th></tr></thead>
+    <tbody>
+      <tr class="row-high"><td><strong>H-01</strong></td><td>Special educators record trial-by-trial data on paper during live sessions because no digital tool meets one-handed in-session constraints</td><td>J5 (Out of scope)</td><td><span class="pill high">HIGH</span></td><td>Contextual observation at 3&ndash;5 centers</td></tr>
+      <tr class="row-high"><td><strong>H-02</strong></td><td>Indian special educators lack training in digital data collection tools &mdash; onboarding burden is a critical adoption variable</td><td>J5, J6</td><td><span class="pill high">HIGH</span></td><td>Semi-structured interview (n=8&ndash;10 therapists)</td></tr>
+      <tr class="row-high"><td><strong>H-03</strong></td><td>Connectivity in session rooms is intermittent &mdash; offline-first is a hard product requirement, not a nice-to-have</td><td>J3, J5, J6</td><td><span class="pill high">HIGH</span></td><td>On-site connectivity test (5+ centers, metro + tier-2)</td></tr>
+      <tr class="row-high"><td><strong>H-05</strong></td><td>Therapist-to-supervisor program handover is primarily verbal &mdash; Priya runs sessions with misremembered targets</td><td>J4 (Deferred)</td><td><span class="pill high">HIGH</span></td><td>Contextual observation + debrief interview (both parties)</td></tr>
+      <tr class="row-high"><td><strong>H-06</strong></td><td>Most Indian autism centers are not DPDPA 2023-compliant at intake &mdash; consent for digital processing is not collected in a verifiable format</td><td>J0, J2</td><td><span class="pill high">HIGH</span></td><td>Director interview (n=5&ndash;8) + consent form review</td></tr>
+      <tr class="row-high"><td><strong>H-07</strong></td><td>Clinical supervisors spend significant uncompensated time (evenings/weekends) writing progress reports because documentation competes with a full clinical caseload</td><td>J8 (Deferred)</td><td><span class="pill high">HIGH</span></td><td>Time-diary study or interview with time-tracking (n=5&ndash;8)</td></tr>
+      <tr class="row-high"><td><strong>H-17</strong></td><td>Progress report writing starts from scratch each cycle &mdash; no carry-forward from prior reports and no auto-population from session data</td><td>J8 (Deferred)</td><td><span class="pill high">HIGH</span></td><td>Observation of report writing + document review at centers</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <p class="section-sub">Validate Second &mdash; Feature Design Risk (5 hypotheses)</p>
+  <div style="overflow-x:auto;">
+  <table class="data-table">
+    <thead><tr><th>#</th><th>Hypothesis</th><th>Journey</th><th>Risk</th><th>Method</th></tr></thead>
+    <tbody>
+      <tr class="row-medium"><td><strong>H-04</strong></td><td>Inquiry details are captured in WhatsApp threads or paper notebooks with no structured record &mdash; no pipeline visibility</td><td>J1</td><td><span class="pill medium">MEDIUM</span></td><td>Director interview + observation (n=5&ndash;8)</td></tr>
+      <tr class="row-medium"><td><strong>H-09</strong></td><td>Center directors experience fee collection as socially uncomfortable with financially stressed families &mdash; they delay and accumulate receivables</td><td>J9</td><td><span class="pill medium">MEDIUM</span></td><td>Semi-structured interview with directors (n=5&ndash;8)</td></tr>
+      <tr class="row-medium"><td><strong>H-10</strong></td><td>When a family misses a session, follow-up is a single WhatsApp message &mdash; no structured protocol exists for at-risk families</td><td>J10</td><td><span class="pill medium">MEDIUM</span></td><td>Director interview + observation of admin workflow (n=5)</td></tr>
+      <tr class="row-medium"><td><strong>H-13</strong></td><td>Indian parents receive progress reports in clinical language they cannot understand and leave without a written home program</td><td>J8 (Deferred)</td><td><span class="pill medium">MEDIUM</span></td><td>Parent interview (n=5&ndash;8) + document review (2&ndash;3 reports per center)</td></tr>
+      <tr class="row-medium"><td><strong>H-16</strong></td><td>English-only UI is acceptable for therapist-facing features in metro Indian centers at launch</td><td>All</td><td><span class="pill medium">MEDIUM</span></td><td>Therapist interview (n=8&ndash;10) &mdash; ask about language preference</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <p class="section-sub">Validate Third &mdash; Compliance and Market Sizing (6 hypotheses)</p>
+  <div style="overflow-x:auto;">
+  <table class="data-table">
+    <thead><tr><th>#</th><th>Hypothesis</th><th>Journey</th><th>Risk</th><th>Method</th></tr></thead>
+    <tbody>
+      <tr class="row-low"><td><strong>H-08</strong></td><td>Treatment plans in Indian centers are less formally structured than US standards because there is no external forcing function (insurance, audits)</td><td>J4 (Deferred)</td><td><span class="pill medium">MEDIUM</span></td><td>Document review at 3&ndash;5 centers + supervisor interview</td></tr>
+      <tr class="row-low"><td><strong>H-11</strong></td><td>Centers using Cognitivebotics still rely on paper for in-session data collection because Cognitivebotics does not provide therapist-side trial recording</td><td>J5 (Out of scope)</td><td><span class="pill medium">MEDIUM</span></td><td>Interview with therapists at Cognitivebotics-using centers (n=3&ndash;5)</td></tr>
+      <tr class="row-low"><td><strong>H-12</strong></td><td>Fee collection is managed through WhatsApp messages, verbal conversation, and handwritten receipts &mdash; no digital invoicing tool in use</td><td>J9</td><td><span class="pill medium">MEDIUM</span></td><td>Director interview + billing workflow observation (n=5)</td></tr>
+      <tr class="row-low"><td><strong>H-14</strong></td><td>WhatsApp photos of paper data sheets are used by some therapists to share session data with supervisors &mdash; transmitting unencrypted child health data</td><td>J5, J6</td><td><span class="pill medium">MEDIUM</span></td><td>Contextual observation + therapist interview (n=5&ndash;8)</td></tr>
+      <tr class="row-low"><td><strong>H-15</strong></td><td>UDID documentation is produced retrospectively when families request it, not captured at intake</td><td>J2</td><td><span class="pill medium">MEDIUM</span></td><td>Director interview (n=5&ndash;8)</td></tr>
+      <tr class="row-low"><td><strong>H-18</strong></td><td>Center directors experience dropout as an unavoidable outcome rather than a process failure because there is no attendance system surfacing early warnings</td><td>J10</td><td><span class="pill medium">MEDIUM</span></td><td>Director interview (n=5&ndash;8)</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="note warn" style="margin-top:20px;">
+    <strong>Primary fieldwork gate:</strong> Approximately 45% of this product's foundation is hypothesis, not observed fact. No design work should begin until H-01, H-03, H-05, H-06, and H-07 are validated or invalidated. These five hypotheses underpin the core product proposition.
+  </div>
+</div>
+
+<!-- ===== RISKS / BREAK POINTS ===== -->
+<div id="panel-rk" class="tab-panel">
+  <div class="panel-header">
+    <h2>Journey Break Points &mdash; 12 Highest-Friction Moments</h2>
+    <p>Consolidated list of where the current paper/WhatsApp-based workflow fails most severely. Sorted by downstream impact. Break points in deferred journeys are documented for post-MVP context. DPDPA exposures are called out separately.</p>
+  </div>
+  <div class="badges">
+    <span class="badge red">3 break points in out-of-scope journeys</span>
+    <span class="badge amber">4 break points in deferred journeys</span>
+    <span class="badge red">3 DPDPA compliance exposures</span>
+    <span class="badge teal">5 break points addressable in MVP</span>
+  </div>
+
+  <div class="chart-wrap">
+<pre class="mermaid">
+flowchart LR
+  classDef bphigh fill:#CD423A,color:#fff,stroke:#8B2E2E
+  classDef bpmed fill:#f0c14b,color:#101319,stroke:#c9950e
+  classDef journey fill:#175F63,color:#fff,stroke:#10494C
+  classDef deferred fill:#fef9ee,color:#7a5800,stroke:#f0c14b
+
+  J1N[Journey 1 Inquiry] --> BP08[BP-08: Leads lost in WhatsApp]
+  J2N[Journey 2 Intake] --> BP04[BP-04: No intake protocol. DPDPA breach.]
+  J3N[Journey 4 Program Design] --> BP07[BP-07: Verbal handover - wrong targets]
+  J3N --> BP11[BP-11: Paper assessment - no reuse]
+  J4N[Journey 5 In-Session] --> BP01[BP-01: Paper data. One-handed. Delayed.]
+  J4N --> BP09[BP-09: WhatsApp photo - DPDPA breach]
+  J5N[Journey 7 Supervisor Review] --> BP02[BP-02: Batch review. 2-week lag.]
+  J6N[Journey 8 Progress Reports] --> BP03[BP-03: Reports from scratch. 2-3h/day.]
+  J6N --> BP10[BP-10: Clinical jargon. Parent excluded.]
+  J7N[Journey 9 Billing] --> BP06[BP-06: Manual billing. Fees delayed.]
+  J8N[Journey 10 Dropout] --> BP05[BP-05: Invisible dropout. No tracking.]
+  J8N --> BP12[BP-12: No re-engagement protocol]
+
+  class BP01,BP02,BP03,BP04,BP09 bphigh
+  class BP05,BP06,BP07,BP08,BP10,BP11,BP12 bpmed
+  class J1N,J7N,J8N journey
+  class J2N,J3N deferred
+</pre>
+  </div>
+
+  <p class="section-sub" style="margin-top:20px;">All 12 Break Points</p>
+  <div style="overflow-x:auto;">
+  <table class="data-table">
+    <thead><tr><th>#</th><th>Journey</th><th>Persona</th><th>Break Point</th><th>Evidence</th><th>Downstream Impact</th></tr></thead>
+    <tbody>
+      <tr class="row-high"><td><strong>BP-01</strong></td><td>J5 In-Session (out of scope)</td><td>Priya, Dr. Sunita</td><td>Paper data collection during live sessions: transcription errors, illegibility, one-handed constraint</td><td>&#128308; Inferred + &#9989; global</td><td>Clinical decisions on inaccurate data. Program updates delayed.</td></tr>
+      <tr class="row-high"><td><strong>BP-02</strong></td><td>J7 Supervisor Review (deferred)</td><td>Dr. Sunita</td><td>Session data arrives in batches, up to 2 weeks delayed. Plateau or regression goes undetected.</td><td>&#9989; BHCOE research</td><td>Child runs outdated targets for weeks. Program quality degrades silently.</td></tr>
+      <tr class="row-high"><td><strong>BP-03</strong></td><td>J8 Progress Reports (deferred)</td><td>Dr. Sunita</td><td>Reports written from scratch each cycle. No auto-population. Est. 2-3h/day on documentation globally.</td><td>&#128308; India scale unvalidated</td><td>Reports are late or superficial. Parent trust erodes.</td></tr>
+      <tr class="row-high"><td><strong>BP-04</strong></td><td>J2 Intake (in scope)</td><td>All</td><td>No standardized intake protocol. Documentation collected ad hoc. DPDPA non-compliance from day one.</td><td>&#9989; PMC research + &#9888; DPDPA</td><td>Incomplete records. Regulatory exposure. Clinical gaps at program start.</td></tr>
+      <tr class="row-high"><td><strong>BP-09</strong></td><td>J5 In-Session (out of scope)</td><td>Priya</td><td>WhatsApp photo of paper data sheet transmitted to supervisor. Unencrypted child health data on personal devices.</td><td>&#128316; Hypothesis + &#9888; DPDPA</td><td>DPDPA breach. Sensitive clinical data exposed with no access control.</td></tr>
+      <tr class="row-medium"><td><strong>BP-05</strong></td><td>J10 Dropout (in scope)</td><td>Meena, Rahul</td><td>No attendance tracking. Dropout is invisible until complete. Single WhatsApp message is the only intervention.</td><td>&#128308; Inferred + &#128316; Hypothesis</td><td>Revenue loss. Clinical harm from interrupted therapy.</td></tr>
+      <tr class="row-medium"><td><strong>BP-06</strong></td><td>J9 Billing (in scope)</td><td>Rahul, Meena</td><td>Billing is manual, relationship-sensitive, and delayed. Outstanding fees accumulate untracked.</td><td>&#128308; Inferred</td><td>Cash flow pressure. Financial stress accelerates dropout.</td></tr>
+      <tr class="row-medium"><td><strong>BP-07</strong></td><td>J4 Program Design (deferred)</td><td>Dr. Sunita, Priya</td><td>Program-to-therapist handover is verbal. Priya may misremember prompt levels, targets, or reinforcement schedules.</td><td>&#128316; Hypothesis</td><td>Sessions misaligned with program. Data collected against wrong targets.</td></tr>
+      <tr class="row-medium"><td><strong>BP-08</strong></td><td>J1 Inquiry (in scope)</td><td>Rahul</td><td>Inquiry details captured in WhatsApp thread with no structured record. No pipeline visibility.</td><td>&#128316; Hypothesis</td><td>Warm leads lost. No conversion tracking. No follow-up on non-responding families.</td></tr>
+      <tr class="row-medium"><td><strong>BP-10</strong></td><td>J8 Progress Reports (deferred)</td><td>Meena</td><td>Reports written in clinical language Meena does not understand. No structured home program document.</td><td>&#128316; Hypothesis</td><td>Parent cannot implement home program. Therapeutic gains not reinforced between sessions.</td></tr>
+      <tr class="row-medium"><td><strong>BP-11</strong></td><td>J4 Program Design (deferred)</td><td>Dr. Sunita</td><td>Assessment data captured on paper. Cannot be reused for automated report generation or trend tracking.</td><td>&#128308; Inferred</td><td>High manual transcription burden. Longitudinal baseline data inaccessible.</td></tr>
+      <tr class="row-medium"><td><strong>BP-12</strong></td><td>J10 Dropout (in scope)</td><td>Rahul</td><td>No re-engagement protocol when a family returns after a gap. Program may be stale.</td><td>&#128316; Hypothesis</td><td>Returning families receive inconsistent or stale care. Dropout risk restarts.</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="note warn" style="margin-top:20px;">
+    <strong>DPDPA compliance exposures:</strong> BP-04 (intake), BP-09 (WhatsApp data sheet), and the general WhatsApp-as-progress-report-delivery pattern in BP-03 all create legal exposure. The platform must address all three before launch. BP-04 is the highest priority &mdash; it occurs at the moment of first contact with child health data.
+  </div>
+  <div class="note info">
+    <strong>MVP addressable break points:</strong> BP-04 (standardized intake + DPDPA consent), BP-05 (dropout detection), BP-06 (billing), BP-08 (inquiry capture), and BP-12 (re-engagement protocol) are all addressable in the MVP scope. BP-01, BP-02, BP-03, BP-07, BP-09, BP-10, BP-11 require deferred journeys.
+  </div>
+</div>
+
+<script>
+  mermaid.initialize({
+    startOnLoad: false,
+    theme: 'base',
+    themeVariables: {
+      background: '#ffffff',
+      primaryColor: '#EEF9F9',
+      primaryTextColor: '#101319',
+      primaryBorderColor: '#20A6AD',
+      lineColor: '#646871',
+      secondaryColor: '#f4f7f9',
+      tertiaryColor: '#fff',
+      edgeLabelBackground: '#ffffff',
+      fontFamily: '-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif',
+      fontSize: '14px'
+    }
+  });
+
+  document.addEventListener('DOMContentLoaded', function() {
+    mermaid.run({ querySelector: 'pre.mermaid' }).then(function() {
+      document.querySelectorAll('.tab-panel').forEach(function(p) {
+        if (!p.classList.contains('active')) {
+          p.classList.add('hidden');
+        }
+      });
+    }).catch(function(e) {
+      console.warn('Mermaid render error:', e);
+      document.querySelectorAll('.tab-panel:not(.active)').forEach(function(p) {
+        p.classList.add('hidden');
+      });
+    });
+  });
+
+  function showTab(id, btn) {
+    document.querySelectorAll('.tab-panel').forEach(function(p) {
+      p.classList.add('hidden');
+    });
+    document.querySelectorAll('.tab-btn').forEach(function(b) {
+      b.classList.remove('active');
+    });
+    document.getElementById('panel-' + id).classList.remove('hidden');
+    btn.classList.add('active');
+  }
+</script>
+</body>
+</html>

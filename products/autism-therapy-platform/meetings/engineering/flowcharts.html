@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ATP &mdash; Journey Flowcharts | Engineering Alignment 2026-04-21</title>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f4f7f9; color: #101319; min-height: 100vh; }
+  .header { background: #175F63; color: #fff; padding: 20px 32px; display: flex; justify-content: space-between; align-items: center; }
+  .header h1 { font-size: 18px; font-weight: 700; letter-spacing: -0.3px; }
+  .header .meta { font-size: 12px; opacity: 0.75; text-align: right; line-height: 1.7; }
+  .tabs { background: #fff; border-bottom: 2px solid #d4e4e5; padding: 0 24px; display: flex; gap: 2px; overflow-x: auto; position: sticky; top: 0; z-index: 100; }
+  .tab-btn { padding: 13px 16px; border: none; background: none; font-size: 12px; font-weight: 500; color: #646871; cursor: pointer; border-bottom: 3px solid transparent; white-space: nowrap; transition: color 0.15s, background 0.15s; }
+  .tab-btn:hover { color: #175F63; background: #f0fafa; }
+  .tab-btn.active { color: #175F63; border-bottom-color: #20A6AD; font-weight: 700; background: #f8fdfd; }
+  .tab-panel { padding: 28px 32px 48px; }
+  .tab-panel.hidden { display: none; }
+  .panel-header { margin-bottom: 22px; }
+  .panel-header h2 { font-size: 20px; color: #175F63; margin-bottom: 6px; font-weight: 700; }
+  .panel-header p { font-size: 14px; color: #646871; line-height: 1.6; max-width: 760px; }
+  .badges { display: flex; gap: 10px; margin: 10px 0 16px; flex-wrap: wrap; }
+  .badge { border-radius: 20px; padding: 4px 12px; font-size: 11px; font-weight: 600; line-height: 1.6; }
+  .badge.teal { background: #EEF9F9; border: 1px solid #20A6AD; color: #175F63; }
+  .badge.red { background: #fdf2f2; border: 1px solid #CD423A; color: #9B2825; }
+  .badge.gray { background: #f5f5f6; border: 1px solid #c0c3c8; color: #646871; }
+  .badge.amber { background: #fffbea; border: 1px solid #f0c14b; color: #7a5800; }
+  .chart-wrap { background: #fff; border-radius: 8px; border: 1px solid #dde7e8; padding: 28px 20px; overflow-x: auto; text-align: center; }
+  .legend { margin-top: 16px; background: #fff; border-radius: 8px; border: 1px solid #dde7e8; padding: 14px 20px; display: flex; align-items: center; flex-wrap: wrap; gap: 18px; }
+  .legend-label { font-size: 11px; font-weight: 700; color: #646871; text-transform: uppercase; letter-spacing: 0.6px; }
+  .legend-item { display: flex; align-items: center; gap: 7px; font-size: 12px; color: #101319; }
+  .swatch { width: 14px; height: 14px; border-radius: 3px; flex-shrink: 0; border: 1px solid rgba(0,0,0,0.12); }
+  .note { margin-top: 16px; border-radius: 6px; padding: 12px 16px; font-size: 13px; line-height: 1.6; }
+  .note.info { background: #f0fafa; border-left: 4px solid #20A6AD; }
+  .note.warn { background: #fdf2f2; border-left: 4px solid #CD423A; }
+  .note.tip { background: #fffbea; border-left: 4px solid #f0c14b; }
+  pre.mermaid { min-height: 60px; }
+  @media print {
+    .tabs { display: none; }
+    .tab-panel { display: block !important; page-break-after: always; padding: 20px; }
+    .header { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Autism Therapy Platform &mdash; Journey Flowcharts</h1>
+  <div class="meta">Engineering Alignment Session &middot; 2026-04-21<br>Lifecycle + 9 Journeys &middot; 11 Diagrams</div>
+</div>
+
+<div class="tabs" role="tablist">
+  <button class="tab-btn active" onclick="showTab('ov',this)">&#128506; Lifecycle</button>
+  <button class="tab-btn" onclick="showTab('dc',this)">&#128279; Dependencies</button>
+  <button class="tab-btn" onclick="showTab('j1',this)">J1 Enrollment</button>
+  <button class="tab-btn" onclick="showTab('j2',this)">J2 Program Design</button>
+  <button class="tab-btn" onclick="showTab('j3',this)">J3 Session Notes</button>
+  <button class="tab-btn" onclick="showTab('j4',this)">J4 Progress Reports</button>
+  <button class="tab-btn" onclick="showTab('j5',this)">J5 Billing</button>
+  <button class="tab-btn" onclick="showTab('j6',this)">J6 Scheduling</button>
+  <button class="tab-btn" onclick="showTab('j7',this)">J7 Dropout</button>
+  <button class="tab-btn" onclick="showTab('j8',this)">J8 Analytics</button>
+  <button class="tab-btn" onclick="showTab('j9',this)">J9 DPDPA</button>
+</div>
+
+<!-- ============================================================ LIFECYCLE OVERVIEW ============================================================ -->
+<div id="panel-ov" class="tab-panel active">
+  <div class="panel-header">
+    <h2>Platform Lifecycle Overview</h2>
+    <p>End-to-end flow from DPDPA consent through enrollment, therapy delivery, reporting, billing, and analytics. Shows how all 9 journeys connect into a single operating cycle for an autism therapy center.</p>
+  </div>
+  <div class="badges">
+    <span class="badge teal">All 4 personas</span>
+    <span class="badge teal">9 journeys mapped</span>
+    <span class="badge amber">J9 is a blocking gate for J1</span>
+  </div>
+  <div class="chart-wrap">
+<pre class="mermaid">
+flowchart LR
+  classDef stage fill:#175F63,color:#fff,stroke:#10494C,stroke-width:1.5px
+  classDef gate fill:#CD423A,color:#fff,stroke:#8B2E2E,stroke-width:2px
+  classDef analytics fill:#646871,color:#fff,stroke:#404347
+
+  OV_9([J9 DPDPA Consent Gate]) --> OV_1[J1 Child Enrollment]
+  OV_1 --> OV_2[J2 Program Design]
+  OV_2 --> OV_6[J6 Scheduling and Attendance]
+  OV_6 --> OV_3[J3 Session Notes]
+  OV_3 --> OV_4[J4 Progress Reports]
+  OV_4 --> OV_5[J5 Billing and Payment]
+  OV_5 --> OV_8[J8 Analytics]
+  OV_6 --> OV_7[J7 Dropout Prevention]
+  OV_7 --> OV_8
+  OV_8 -.->|Informs next cycle| OV_6
+
+  class OV_1,OV_2,OV_3,OV_4,OV_5,OV_6,OV_7 stage
+  class OV_9 gate
+  class OV_8 analytics
+</pre>
+  </div>
+  <div class="legend">
+    <span class="legend-label">Key</span>
+    <span class="legend-item"><span class="swatch" style="background:#CD423A"></span> DPDPA Consent Gate (blocks J1 until consent confirmed)</span>
+    <span class="legend-item"><span class="swatch" style="background:#175F63"></span> Core journey stages</span>
+    <span class="legend-item"><span class="swatch" style="background:#646871"></span> Analytics (fed by all other journeys)</span>
+  </div>
+  <div class="note info">
+    <strong>For engineering:</strong> J9 (DPDPA Consent) must be the first feature shipped. No child health data enters the system until parental consent is confirmed and stored with a timestamp. This is a hard regulatory gate, not a UI nicety.
+  </div>
+</div>
+
+<!-- ============================================================ DEPENDENCY CHAIN ============================================================ -->
+<div id="panel-dc" class="tab-panel">
+  <div class="panel-header">
+    <h2>Journey Dependency Chain</h2>
+    <p>Which journeys depend on which. The Attendance Mark (J6) is the most critical cascade node &mdash; it feeds session notes, billing, and dropout detection simultaneously. Build sequence must follow this dependency graph.</p>
+  </div>
+  <div class="badges">
+    <span class="badge red">J9 blocks J1 blocks everything</span>
+    <span class="badge amber">Attendance Mark feeds 3 journeys</span>
+    <span class="badge teal">J8 Analytics is downstream of all</span>
+  </div>
+  <div class="chart-wrap">
+<pre class="mermaid">
+flowchart TD
+  classDef gate fill:#CD423A,color:#fff,stroke:#8B2E2E,stroke-width:2px
+  classDef core fill:#175F63,color:#fff,stroke:#10494C
+  classDef downstream fill:#20A6AD,color:#fff,stroke:#10494C
+  classDef critical fill:#20A6AD,color:#fff,stroke:#10494C,stroke-width:5px
+  classDef analytics fill:#646871,color:#fff,stroke:#404347
+  classDef decision fill:#fff,color:#101319,stroke:#175F63,stroke-width:2px
+
+  DC_J9[J9 DPDPA Consent] --> DC_J1[J1 Child Enrollment]
+  DC_J1 --> DC_J2[J2 Program Design]
+  DC_J1 --> DC_J6[J6 Scheduling]
+  DC_J6 --> DC_ATT([Attendance Mark])
+  DC_ATT -->|Session confirmed| DC_J3[J3 Session Notes]
+  DC_ATT -->|Session confirmed| DC_J5[J5 Billing]
+  DC_ATT -->|Absence detected| DC_J7[J7 Dropout Detection]
+  DC_J3 --> DC_J4[J4 Progress Reports]
+  DC_J4 --> DC_J5
+  DC_J4 --> DC_J8[J8 Analytics]
+  DC_J5 --> DC_J8
+  DC_J7 --> DC_J8
+
+  class DC_J9 gate
+  class DC_J1,DC_J2,DC_J6 core
+  class DC_J3,DC_J4,DC_J5,DC_J7 downstream
+  class DC_ATT critical
+  class DC_J8 analytics
+</pre>
+  </div>
+  <div class="legend">
+    <span class="legend-label">Node type</span>
+    <span class="legend-item"><span class="swatch" style="background:#CD423A"></span> Regulatory gate (DPDPA)</span>
+    <span class="legend-item"><span class="swatch" style="background:#175F63"></span> Core journeys (must build first)</span>
+    <span class="legend-item"><span class="swatch" style="background:#20A6AD;border-width:3px;border-color:#10494C"></span> Attendance Mark (critical cascade)</span>
+    <span class="legend-item"><span class="swatch" style="background:#20A6AD"></span> Downstream journeys</span>
+    <span class="legend-item"><span class="swatch" style="background:#646871"></span> Analytics (terminal sink)</span>
+  </div>
+  <div class="note warn">
+    <strong>Critical path for Sprint 1:</strong> RBAC-001 &rarr; AUTH-001 &rarr; AUDIT-001 &rarr; DPDPA-001 must ship as one unit before any child health data enters production. These four stories are a single atomic security baseline.
+  </div>
+</div>
+
+<!-- ============================================================ J1: CHILD ENROLLMENT ============================================================ -->
+<div id="panel-j1" class="tab-panel">
+  <div class="panel-header">
+    <h2>J1 &mdash; Child Enrollment and Onboarding</h2>
+    <p>From first family inquiry to an enrolled child with a confirmed therapist assignment, parent portal access, and consent on file. DPDPA consent is a hard gate at step 3 &mdash; no health data is created before it is confirmed.</p>
+  </div>
+  <div class="badges">
+    <span class="badge teal">Primary actor: Rahul (Director)</span>
+    <span class="badge teal">Supporting: Dr. Sunita, Meena</span>
+    <span class="badge red">DPDPA gate at step 3</span>
+    <span class="badge gray">20 steps in full spec</span>
+  </div>
+  <div class="chart-wrap">
+<pre class="mermaid">
+flowchart TD
+  classDef director fill:#10494C,color:#fff,stroke:#101319
+  classDef supervisor fill:#175F63,color:#fff,stroke:#10494C
+  classDef therapist fill:#20A6AD,color:#fff,stroke:#175F63
+  classDef parent fill:#EEF9F9,color:#101319,stroke:#20A6AD,stroke-width:1.5px
+  classDef dpdpa fill:#CD423A,color:#fff,stroke:#8B2E2E
+  classDef system fill:#646871,color:#fff,stroke:#404347
+  classDef decision fill:#fff,color:#101319,stroke:#175F63,stroke-width:2px
+  classDef terminal fill:#101319,color:#fff,stroke:#101319
+
+  J1_1[Family Inquiry Received] --> J1_2[Pre-screening Call Scheduled]
+  J1_2 --> J1_3([DPDPA Consent Form Presented])
+  J1_3 --> J1_D1{Consent Given?}
+  J1_D1 -->|No| J1_STOP([Inquiry Stored Only - No Health Data])
+  J1_D1 -->|Yes| J1_4[Consent Recorded with Timestamp]
+  J1_4 --> J1_5[Assessment Appointment Scheduled]
+  J1_5 --> J1_6[Initial Assessment Conducted]
+  J1_6 --> J1_7[Assessment Report Written]
+  J1_7 --> J1_8[Child Profile Created in System]
+  J1_8 --> J1_9[Therapist Assigned]
+  J1_9 --> J1_10[Parent Portal Access Sent via WhatsApp]
+  J1_10 --> J1_END([Enrollment Complete])
+
+  class J1_1,J1_2,J1_5,J1_8,J1_9,J1_10 director
+  class J1_6,J1_7 supervisor
+  class J1_3,J1_STOP dpdpa
+  class J1_4 system
+  class J1_D1 decision
+  class J1_END terminal
+</pre>
+  </div>
+  <div class="legend">
+    <span class="legend-label">Actor</span>
+    <span class="legend-item"><span class="swatch" style="background:#10494C"></span> Rahul (Director)</span>
+    <span class="legend-item"><span class="swatch" style="background:#175F63"></span> Dr. Sunita (Supervisor)</span>
+    <span class="legend-item"><span class="swatch" style="background:#EEF9F9;border:1.5px solid #20A6AD"></span> Meena (Parent)</span>
+    <span class="legend-item"><span class="swatch" style="background:#CD423A"></span> DPDPA Gate</span>
+    <span class="legend-item"><span class="swatch" style="background:#646871"></span> System</span>
+  </div>
+  <div class="note tip">
+    <strong>Build note:</strong> The consent timestamp (J1_4) must be stored as an immutable record. The system must prevent creation of any child health record (assessment, program, session note) until the consent record exists for that child_id.
+  </div>
+</div>
+
+<!-- ============================================================ J2: CLINICAL PROGRAM DESIGN ============================================================ -->
+<div id="panel-j2" class="tab-panel">
+  <div class="panel-header">
+    <h2>J2 &mdash; Clinical Program Design</h2>
+    <p>From therapist assignment to an approved, active therapy program with defined targets, baselines, and criteria. Dr. Sunita is the approval gate &mdash; no program goes live without supervisor sign-off.</p>
+  </div>
+  <div class="badges">
+    <span class="badge teal">Primary actor: Dr. Sunita (Supervisor)</span>
+    <span class="badge teal">Supporting: Priya (Therapist)</span>
+    <span class="badge gray">24 steps in full spec</span>
+    <span class="badge amber">Revision loop until approved</span>
+  </div>
+  <div class="chart-wrap">
+<pre class="mermaid">
+flowchart TD
+  classDef director fill:#10494C,color:#fff,stroke:#101319
+  classDef supervisor fill:#175F63,color:#fff,stroke:#10494C
+  classDef therapist fill:#20A6AD,color:#fff,stroke:#175F63
+  classDef system fill:#646871,color:#fff,stroke:#404347
+  classDef decision fill:#fff,color:#101319,stroke:#175F63,stroke-width:2px
+  classDef terminal fill:#101319,color:#fff,stroke:#101319
+
+  J2_1[Therapist Assigned to Child] --> J2_2[Review Assessment Report]
+  J2_2 --> J2_3[Browse Program Template Library]
+  J2_3 --> J2_D1{Template Found?}
+  J2_D1 -->|Yes| J2_4[Customise Existing Template]
+  J2_D1 -->|No| J2_4B[Build Program from Scratch]
+  J2_4 --> J2_5[Define Target Behaviours and Goals]
+  J2_4B --> J2_5
+  J2_5 --> J2_6[Set Baselines and Mastery Criteria]
+  J2_6 --> J2_7[Submit Draft to Supervisor]
+  J2_7 --> J2_D2{Supervisor Review}
+  J2_D2 -->|Approved| J2_8[Program Activated in System]
+  J2_D2 -->|Revisions Needed| J2_9[Revision Comments Added]
+  J2_9 --> J2_4
+  J2_8 --> J2_10[Program Handed Over to Therapist]
+  J2_10 --> J2_END([Program Live - Ready for Sessions])
+
+  class J2_1,J2_2,J2_3,J2_4,J2_4B,J2_5,J2_6,J2_7 therapist
+  class J2_D2,J2_9,J2_10 supervisor
+  class J2_8 system
+  class J2_D1,J2_D2 decision
+  class J2_END terminal
+</pre>
+  </div>
+  <div class="legend">
+    <span class="legend-label">Actor</span>
+    <span class="legend-item"><span class="swatch" style="background:#20A6AD"></span> Priya (Therapist) &mdash; drafts</span>
+    <span class="legend-item"><span class="swatch" style="background:#175F63"></span> Dr. Sunita (Supervisor) &mdash; approves</span>
+    <span class="legend-item"><span class="swatch" style="background:#646871"></span> System &mdash; activates</span>
+  </div>
+  <div class="note info">
+    <strong>Template library:</strong> Pre-built program templates are a key differentiator vs. paper-based workflows. Building the template library is a separate workstream (see Cluster 1 stories NOTES-004 and NOTES-005).
+  </div>
+</div>
+
+<!-- ============================================================ J3: POST-SESSION DOCUMENTATION ============================================================ -->
+<div id="panel-j3" class="tab-panel">
+  <div class="panel-header">
+    <h2>J3 &mdash; Post-Session Documentation</h2>
+    <p>From session end to a supervisor-approved SOAP note stored in the system. Designed for offline-first use &mdash; Priya writes notes on her phone in or just after the session room. The offline sync path must be invisible to the user.</p>
+  </div>
+  <div class="badges">
+    <span class="badge teal">Primary actor: Priya (Therapist)</span>
+    <span class="badge teal">Approver: Dr. Sunita</span>
+    <span class="badge amber">Offline-first required</span>
+    <span class="badge red">DPDPA: child health data stored</span>
+    <span class="badge gray">19 steps in full spec</span>
+  </div>
+  <div class="chart-wrap">
+<pre class="mermaid">
+flowchart TD
+  classDef director fill:#10494C,color:#fff,stroke:#101319
+  classDef supervisor fill:#175F63,color:#fff,stroke:#10494C
+  classDef therapist fill:#20A6AD,color:#fff,stroke:#175F63
+  classDef system fill:#646871,color:#fff,stroke:#404347
+  classDef dpdpa fill:#CD423A,color:#fff,stroke:#8B2E2E
+  classDef decision fill:#fff,color:#101319,stroke:#175F63,stroke-width:2px
+  classDef terminal fill:#101319,color:#fff,stroke:#101319
+
+  J3_1[Session Ends] --> J3_2[Priya Opens Session Notes]
+  J3_2 --> J3_D1{Connectivity?}
+  J3_D1 -->|Offline| J3_3[Write Note - Saved Locally]
+  J3_D1 -->|Online| J3_4[Write Note - Direct Submit]
+  J3_3 --> J3_3S[Auto-sync When Online Restored]
+  J3_3S --> J3_5[Note in Review Queue]
+  J3_4 --> J3_5
+  J3_5 --> J3_6[Priya Marks Behaviour Targets]
+  J3_6 --> J3_7[Note Submitted for Review]
+  J3_7 --> J3_8[Supervisor Review Queue Updated]
+  J3_8 --> J3_D2{Supervisor Decision}
+  J3_D2 -->|Approved| J3_9[Note Finalised]
+  J3_D2 -->|Returned| J3_10[Revision Comments Added]
+  J3_10 --> J3_2
+  J3_9 --> J3_11[Feeds Progress Reports and Billing]
+  J3_11 --> J3_END([Documentation Complete])
+
+  class J3_1,J3_2,J3_3,J3_4,J3_6,J3_7 therapist
+  class J3_8,J3_D2,J3_10 supervisor
+  class J3_3S,J3_5,J3_9,J3_11 system
+  class J3_D1,J3_D2 decision
+  class J3_END terminal
+</pre>
+  </div>
+  <div class="legend">
+    <span class="legend-label">Actor</span>
+    <span class="legend-item"><span class="swatch" style="background:#20A6AD"></span> Priya (Therapist)</span>
+    <span class="legend-item"><span class="swatch" style="background:#175F63"></span> Dr. Sunita (Supervisor)</span>
+    <span class="legend-item"><span class="swatch" style="background:#646871"></span> System (offline sync, queue)</span>
+  </div>
+  <div class="note warn">
+    <strong>DPDPA flag:</strong> Session notes contain child health data. Storage and transmission require confirmed parental consent for that child. The system must check consent status before persisting any note, even locally.
+  </div>
+</div>
+
+<!-- ============================================================ J4: PROGRESS REPORTING ============================================================ -->
+<div id="panel-j4" class="tab-panel">
+  <div class="panel-header">
+    <h2>J4 &mdash; Progress Reporting</h2>
+    <p>Monthly progress report generated from session notes, reviewed by supervisor, and delivered to parents via WhatsApp and the parent portal. Auto-population from approved notes is the key efficiency gain over the current manual process.</p>
+  </div>
+  <div class="badges">
+    <span class="badge teal">Primary actor: Priya + Dr. Sunita</span>
+    <span class="badge teal">Recipient: Meena (Parent)</span>
+    <span class="badge amber">Auto-populated from J3 notes</span>
+    <span class="badge red">DPDPA: report contains child health data</span>
+    <span class="badge gray">17 steps in full spec</span>
+  </div>
+  <div class="chart-wrap">
+<pre class="mermaid">
+flowchart TD
+  classDef director fill:#10494C,color:#fff,stroke:#101319
+  classDef supervisor fill:#175F63,color:#fff,stroke:#10494C
+  classDef therapist fill:#20A6AD,color:#fff,stroke:#175F63
+  classDef parent fill:#EEF9F9,color:#101319,stroke:#20A6AD,stroke-width:1.5px
+  classDef system fill:#646871,color:#fff,stroke:#404347
+  classDef dpdpa fill:#CD423A,color:#fff,stroke:#8B2E2E
+  classDef decision fill:#fff,color:#101319,stroke:#175F63,stroke-width:2px
+  classDef terminal fill:#101319,color:#fff,stroke:#101319
+
+  J4_1[Monthly Report Trigger] --> J4_2[System Auto-populates from Approved Notes]
+  J4_2 --> J4_D1{Sufficient Notes?}
+  J4_D1 -->|Less than 4 approved notes| J4_ERR[Insufficient Data Flag Raised]
+  J4_ERR --> J4_END_ERR([Report Blocked - Notified])
+  J4_D1 -->|Sufficient data| J4_3[Priya Adds Clinical Narrative]
+  J4_3 --> J4_4[Draft Submitted to Supervisor]
+  J4_4 --> J4_D2{Supervisor Review}
+  J4_D2 -->|Changes Needed| J4_5[Revision Comments Sent]
+  J4_5 --> J4_3
+  J4_D2 -->|Approved| J4_6[PDF Report Generated]
+  J4_6 --> J4_7[Delivered via WhatsApp and Parent Portal]
+  J4_7 --> J4_8[Parent Views Report]
+  J4_8 --> J4_END([Report Delivered and Acknowledged])
+
+  class J4_1 system
+  class J4_2 system
+  class J4_3,J4_4 therapist
+  class J4_D2,J4_5 supervisor
+  class J4_6,J4_7 system
+  class J4_8 parent
+  class J4_ERR dpdpa
+  class J4_D1,J4_D2 decision
+  class J4_END,J4_END_ERR terminal
+</pre>
+  </div>
+  <div class="legend">
+    <span class="legend-label">Actor</span>
+    <span class="legend-item"><span class="swatch" style="background:#20A6AD"></span> Priya (Therapist)</span>
+    <span class="legend-item"><span class="swatch" style="background:#175F63"></span> Dr. Sunita (Supervisor)</span>
+    <span class="legend-item"><span class="swatch" style="background:#EEF9F9;border:1.5px solid #20A6AD"></span> Meena (Parent)</span>
+    <span class="legend-item"><span class="swatch" style="background:#646871"></span> System</span>
+    <span class="legend-item"><span class="swatch" style="background:#CD423A"></span> Error / blocked state</span>
+  </div>
+  <div class="note info">
+    <strong>WhatsApp delivery:</strong> Reports are sent via WhatsApp Business API (Meta WABA). This requires pre-approved message templates and DLT registration. Not a simple API call &mdash; see Cluster 4 stories WA-001 through WA-005 for prerequisites.
+  </div>
+</div>
+
+<!-- ============================================================ J5: BILLING AND PAYMENTS ============================================================ -->
+<div id="panel-j5" class="tab-panel">
+  <div class="panel-header">
+    <h2>J5 &mdash; Billing and UPI Payments</h2>
+    <p>Attendance-driven invoice generation, delivery to parents, and payment collection across UPI, cash, and cheque. Four payment outcomes &mdash; the overdue path feeds a reminder loop and surfaces in J8 analytics as outstanding receivables.</p>
+  </div>
+  <div class="badges">
+    <span class="badge teal">Primary actor: Rahul (Director)</span>
+    <span class="badge teal">Payer: Meena (Parent)</span>
+    <span class="badge amber">Triggered by J6 attendance confirmation</span>
+    <span class="badge teal">UPI-native payment flow</span>
+    <span class="badge gray">18 steps in full spec</span>
+  </div>
+  <div class="chart-wrap">
+<pre class="mermaid">
+flowchart TD
+  classDef director fill:#10494C,color:#fff,stroke:#101319
+  classDef parent fill:#EEF9F9,color:#101319,stroke:#20A6AD,stroke-width:1.5px
+  classDef system fill:#646871,color:#fff,stroke:#404347
+  classDef decision fill:#fff,color:#101319,stroke:#175F63,stroke-width:2px
+  classDef terminal fill:#101319,color:#fff,stroke:#101319
+
+  J5_1[Attendance Confirmed in J6] --> J5_2[Invoice Auto-generated by System]
+  J5_2 --> J5_3[Rahul Reviews Invoice]
+  J5_3 --> J5_D1{Invoice Correct?}
+  J5_D1 -->|Needs Adjustment| J5_4[Rahul Edits Invoice]
+  J5_4 --> J5_3
+  J5_D1 -->|Correct| J5_5[Invoice Sent to Parent via WhatsApp]
+  J5_5 --> J5_6[Parent Receives Invoice]
+  J5_6 --> J5_D2{Payment Method}
+  J5_D2 -->|UPI| J5_7[UPI Payment Link Tapped]
+  J5_D2 -->|Cash| J5_8[Cash Payment Recorded by Rahul]
+  J5_D2 -->|Cheque| J5_9[Cheque Details Entered by Rahul]
+  J5_D2 -->|Overdue| J5_10[Automated Reminder Sent]
+  J5_7 --> J5_11[Payment Confirmed via UPI Webhook]
+  J5_8 --> J5_11
+  J5_9 --> J5_11
+  J5_10 --> J5_6
+  J5_11 --> J5_12[Receipt Generated and Sent]
+  J5_12 --> J5_END([Invoice Closed - Revenue Recorded])
+
+  class J5_3,J5_4 director
+  class J5_6 parent
+  class J5_1,J5_2,J5_5,J5_7,J5_10,J5_11,J5_12 system
+  class J5_8,J5_9 director
+  class J5_D1,J5_D2 decision
+  class J5_END terminal
+</pre>
+  </div>
+  <div class="legend">
+    <span class="legend-label">Actor</span>
+    <span class="legend-item"><span class="swatch" style="background:#10494C"></span> Rahul (Director)</span>
+    <span class="legend-item"><span class="swatch" style="background:#EEF9F9;border:1.5px solid #20A6AD"></span> Meena (Parent)</span>
+    <span class="legend-item"><span class="swatch" style="background:#646871"></span> System (automation, webhooks)</span>
+  </div>
+  <div class="note tip">
+    <strong>UPI Webhook:</strong> Payment confirmation requires a UPI payment gateway webhook (Razorpay or similar). The invoice status must update in real time on payment success. Cash and cheque are manual entries by Rahul. All three paths converge at J5_11.
+  </div>
+</div>
+
+<!-- ============================================================ J6: SCHEDULING AND ATTENDANCE ============================================================ -->
+<div id="panel-j6" class="tab-panel">
+  <div class="panel-header">
+    <h2>J6 &mdash; Scheduling and Attendance</h2>
+    <p>Weekly schedule creation by Rahul, session reminders, and the critical Attendance Mark by Priya &mdash; which must be completable in 2 taps or fewer, offline-first, in a noisy session room. This single action feeds billing, session notes, and dropout detection.</p>
+  </div>
+  <div class="badges">
+    <span class="badge teal">Primary actor: Priya (Therapist)</span>
+    <span class="badge teal">Schedule owner: Rahul</span>
+    <span class="badge red">Attendance mark: max 2 taps, offline-first</span>
+    <span class="badge amber">Feeds J3, J5, and J7</span>
+    <span class="badge gray">17 steps in full spec</span>
+  </div>
+  <div class="chart-wrap">
+<pre class="mermaid">
+flowchart TD
+  classDef director fill:#10494C,color:#fff,stroke:#101319
+  classDef therapist fill:#20A6AD,color:#fff,stroke:#175F63
+  classDef parent fill:#EEF9F9,color:#101319,stroke:#20A6AD,stroke-width:1.5px
+  classDef system fill:#646871,color:#fff,stroke:#404347
+  classDef critical fill:#20A6AD,color:#fff,stroke:#10494C,stroke-width:5px
+  classDef decision fill:#fff,color:#101319,stroke:#175F63,stroke-width:2px
+  classDef terminal fill:#101319,color:#fff,stroke:#101319
+
+  J6_1[Rahul Creates Weekly Schedule] --> J6_2[Therapists View Sessions on App]
+  J6_2 --> J6_3[Reminder Sent 1 Hour Before Session]
+  J6_3 --> J6_4[Priya Opens App at Session Start]
+  J6_4 --> J6_ATT([ATTENDANCE MARK - max 2 taps - offline-first])
+  J6_ATT --> J6_D1{Child Present?}
+  J6_D1 -->|Present| J6_5[Session Status Set to Active]
+  J6_D1 -->|Absent| J6_6[Absence Recorded with Reason]
+  J6_5 --> J6_7[Session Conducted]
+  J6_7 --> J6_8[Session Closed - Attendance Finalised]
+  J6_8 --> J6_9[Feeds J3 Notes and J5 Billing]
+  J6_6 --> J6_10[Missed Session Counter Updated]
+  J6_10 --> J6_11[Feeds J7 Dropout Detection]
+  J6_9 --> J6_END([Attendance Complete])
+  J6_11 --> J6_END
+
+  class J6_1 director
+  class J6_2,J6_4 therapist
+  class J6_3,J6_5,J6_8,J6_9,J6_10,J6_11 system
+  class J6_6 therapist
+  class J6_7 therapist
+  class J6_ATT critical
+  class J6_D1 decision
+  class J6_END terminal
+</pre>
+  </div>
+  <div class="legend">
+    <span class="legend-label">Actor</span>
+    <span class="legend-item"><span class="swatch" style="background:#10494C"></span> Rahul (schedule creation)</span>
+    <span class="legend-item"><span class="swatch" style="background:#20A6AD"></span> Priya (attendance, session)</span>
+    <span class="legend-item"><span class="swatch" style="background:#646871"></span> System (reminders, cascade)</span>
+    <span class="legend-item"><span class="swatch" style="background:#20A6AD;border:3px solid #10494C"></span> Attendance Mark (critical cascade node)</span>
+  </div>
+  <div class="note warn">
+    <strong>Engineering constraint:</strong> The attendance mark must persist locally with no network required. Write to local storage immediately, sync to server in background. Show &ldquo;Saved&rdquo; only when local persistence is confirmed &mdash; never &ldquo;Saving&hellip;&rdquo;. Haptic feedback required (noisy environment). Touch target minimum 44px.
+  </div>
+</div>
+
+<!-- ============================================================ J7: MISSED SESSION AND DROPOUT PREVENTION ============================================================ -->
+<div id="panel-j7" class="tab-panel">
+  <div class="panel-header">
+    <h2>J7 &mdash; Missed Session and Dropout Prevention</h2>
+    <p>Two paths triggered by J6 absence detection: single-miss follow-up (WhatsApp + reschedule) and multi-miss escalation (supervisor alert, director outreach, discharge decision). Discharge is a human-only decision &mdash; the system surfaces risk; a person decides.</p>
+  </div>
+  <div class="badges">
+    <span class="badge teal">Primary actor: Rahul + Dr. Sunita</span>
+    <span class="badge teal">Parent contact: Meena</span>
+    <span class="badge amber">Triggered by J6 absence flag</span>
+    <span class="badge red">Discharge: human decision only</span>
+    <span class="badge gray">15 steps in full spec</span>
+  </div>
+  <div class="chart-wrap">
+<pre class="mermaid">
+flowchart TD
+  classDef director fill:#10494C,color:#fff,stroke:#101319
+  classDef supervisor fill:#175F63,color:#fff,stroke:#10494C
+  classDef therapist fill:#20A6AD,color:#fff,stroke:#175F63
+  classDef parent fill:#EEF9F9,color:#101319,stroke:#20A6AD,stroke-width:1.5px
+  classDef system fill:#646871,color:#fff,stroke:#404347
+  classDef decision fill:#fff,color:#101319,stroke:#175F63,stroke-width:2px
+  classDef terminal fill:#101319,color:#fff,stroke:#101319
+
+  J7_1[Absence Flagged by J6] --> J7_D1{Absence Pattern?}
+  J7_D1 -->|First or Second Miss| J7_A1[WhatsApp Reminder Sent to Parent]
+  J7_D1 -->|Three Plus Absences| J7_B1[Dropout Risk Flag Raised in Dashboard]
+  J7_A1 --> J7_D2{Parent Response?}
+  J7_D2 -->|Will Return| J7_A2[Session Rescheduled]
+  J7_D2 -->|No Response in 48 hrs| J7_A3[Escalate to Supervisor]
+  J7_A3 --> J7_B1
+  J7_B1 --> J7_B2[Supervisor Notified in App]
+  J7_B2 --> J7_B3[Rahul Makes Outreach Call]
+  J7_B3 --> J7_D3{Family Outcome?}
+  J7_D3 -->|Returning| J7_C1[Return Plan Created]
+  J7_D3 -->|Withdrawing| J7_C2[Discharge Process Initiated by Human]
+  J7_C2 --> J7_C3[Final Progress Report Generated]
+  J7_C3 --> J7_C4[Child Records Archived]
+  J7_A2 --> J7_END([Child Retained])
+  J7_C1 --> J7_END
+  J7_C4 --> J7_END2([Child Discharged - Records Archived])
+
+  class J7_A1,J7_B2,J7_B1 system
+  class J7_A3,J7_B2 supervisor
+  class J7_B3,J7_C2,J7_C3,J7_C4 director
+  class J7_A2 system
+  class J7_C1 director
+  class J7_D1,J7_D2,J7_D3 decision
+  class J7_END,J7_END2 terminal
+</pre>
+  </div>
+  <div class="legend">
+    <span class="legend-label">Actor</span>
+    <span class="legend-item"><span class="swatch" style="background:#10494C"></span> Rahul (outreach, discharge decision)</span>
+    <span class="legend-item"><span class="swatch" style="background:#175F63"></span> Dr. Sunita (escalation review)</span>
+    <span class="legend-item"><span class="swatch" style="background:#EEF9F9;border:1.5px solid #20A6AD"></span> Meena (parent response)</span>
+    <span class="legend-item"><span class="swatch" style="background:#646871"></span> System (flag, reminder, auto-send)</span>
+  </div>
+  <div class="note warn">
+    <strong>No auto-discharge:</strong> The system may flag dropout risk and surface it on the dashboard. It must never automatically discharge a child. The discharge action (J7_C2) must be an explicit, confirmable human action by Rahul or Dr. Sunita.
+  </div>
+</div>
+
+<!-- ============================================================ J8: ANALYTICS AND REPORTING ============================================================ -->
+<div id="panel-j8" class="tab-panel">
+  <div class="panel-header">
+    <h2>J8 &mdash; Analytics and Center Reporting</h2>
+    <p>Rahul&rsquo;s visibility into center-wide performance: attendance, revenue, clinical outcomes, and dropout risk. Mobile-first Android dashboard. Exports are asynchronous &mdash; triggered by Rahul, processed in background, delivered via email and in-app notification.</p>
+  </div>
+  <div class="badges">
+    <span class="badge teal">Primary actor: Rahul (Director)</span>
+    <span class="badge teal">Also: Dr. Sunita (clinical view)</span>
+    <span class="badge amber">Downstream of all other journeys</span>
+    <span class="badge gray">Async export pattern</span>
+    <span class="badge gray">22 steps in full spec</span>
+  </div>
+  <div class="chart-wrap">
+<pre class="mermaid">
+flowchart TD
+  classDef director fill:#10494C,color:#fff,stroke:#101319
+  classDef supervisor fill:#175F63,color:#fff,stroke:#10494C
+  classDef system fill:#646871,color:#fff,stroke:#404347
+  classDef decision fill:#fff,color:#101319,stroke:#175F63,stroke-width:2px
+  classDef terminal fill:#101319,color:#fff,stroke:#101319
+
+  J8_1[Rahul Opens Analytics Dashboard] --> J8_2[Center Overview Loaded]
+  J8_2 --> J8_D1{Select Report View}
+  J8_D1 -->|Attendance| J8_3[Attendance Rate by Therapist]
+  J8_D1 -->|Revenue| J8_4[Revenue and Outstanding Invoices]
+  J8_D1 -->|Clinical| J8_5[Child Progress and Outcomes]
+  J8_D1 -->|Dropout Risk| J8_6[Dropout Risk Dashboard]
+  J8_3 --> J8_7[Apply Date and Therapist Filters]
+  J8_4 --> J8_7
+  J8_5 --> J8_7
+  J8_6 --> J8_7
+  J8_7 --> J8_D2{Export Required?}
+  J8_D2 -->|No| J8_END([Session Complete])
+  J8_D2 -->|Yes| J8_8[Export Requested]
+  J8_8 --> J8_9[Async Job Queued in Background]
+  J8_9 --> J8_10[Notification Sent When Ready]
+  J8_10 --> J8_11[Rahul Downloads Report]
+  J8_11 --> J8_END
+
+  class J8_1,J8_7,J8_8,J8_11 director
+  class J8_2,J8_3,J8_4,J8_5,J8_6,J8_9,J8_10 system
+  class J8_D1,J8_D2 decision
+  class J8_END terminal
+</pre>
+  </div>
+  <div class="legend">
+    <span class="legend-label">Actor</span>
+    <span class="legend-item"><span class="swatch" style="background:#10494C"></span> Rahul (Director) &mdash; primary user</span>
+    <span class="legend-item"><span class="swatch" style="background:#175F63"></span> Dr. Sunita &mdash; clinical outcomes view</span>
+    <span class="legend-item"><span class="swatch" style="background:#646871"></span> System (aggregation, async export)</span>
+  </div>
+  <div class="note info">
+    <strong>Async export:</strong> Large exports (full child history, billing summaries) must not block the UI. Queue the job server-side, poll for completion, send in-app and email notification. Never show a spinner for more than 2 seconds &mdash; transition to &ldquo;We&rsquo;ll notify you when it&rsquo;s ready&rdquo; immediately.
+  </div>
+</div>
+
+<!-- ============================================================ J9: DPDPA CONSENT MANAGEMENT ============================================================ -->
+<div id="panel-j9" class="tab-panel">
+  <div class="panel-header">
+    <h2>J9 &mdash; DPDPA Consent Management</h2>
+    <p>Two paths: Path A (consent capture at enrollment &mdash; prerequisite for all child health data) and Path B (data subject rights &mdash; view, correct, or request erasure). The erasure path has a legal conflict between DPDPA right to erasure and RPWD Act 2016 record retention obligations. Engineering must NOT auto-erase.</p>
+  </div>
+  <div class="badges">
+    <span class="badge red">DPDPA 2023 applies (NOT HIPAA)</span>
+    <span class="badge red">Blocks ALL child health data until confirmed</span>
+    <span class="badge amber">Erasure requires legal sign-off</span>
+    <span class="badge gray">Two paths: capture and rights</span>
+  </div>
+  <div class="chart-wrap">
+<pre class="mermaid">
+flowchart TD
+  classDef director fill:#10494C,color:#fff,stroke:#101319
+  classDef supervisor fill:#175F63,color:#fff,stroke:#10494C
+  classDef parent fill:#EEF9F9,color:#101319,stroke:#20A6AD,stroke-width:1.5px
+  classDef system fill:#646871,color:#fff,stroke:#404347
+  classDef dpdpa fill:#CD423A,color:#fff,stroke:#8B2E2E
+  classDef decision fill:#fff,color:#101319,stroke:#175F63,stroke-width:2px
+  classDef terminal fill:#101319,color:#fff,stroke:#101319
+
+  J9_START([DPDPA Journey Entry]) --> J9_D1{Which Path?}
+
+  J9_D1 -->|Path A - Enrollment| J9_A1[Consent Form Presented to Parent]
+  J9_A1 --> J9_A2[Parent Reviews Data Usage Terms]
+  J9_A2 --> J9_AD1{Consent Decision}
+  J9_AD1 -->|Consent Given| J9_A3[Consent Recorded with Timestamp and Version]
+  J9_AD1 -->|Consent Declined| J9_A4[Service Cannot Proceed - No Health Data Stored]
+  J9_A3 --> J9_A5[Enrollment Journey Unblocked]
+  J9_A5 --> J9_AEND([Consent Active - J1 Proceeds])
+
+  J9_D1 -->|Path B - Rights Request| J9_B1[Parent Submits Rights Request via Portal]
+  J9_B1 --> J9_BD1{Request Type}
+  J9_BD1 -->|View Data| J9_B2[Data Export Prepared]
+  J9_BD1 -->|Correct Data| J9_B3[Correction Request Sent to Supervisor]
+  J9_BD1 -->|Erase Data| J9_BLEGAL[Legal Review Required]
+  J9_B2 --> J9_B4[Secure Download Link Sent to Parent]
+  J9_B3 --> J9_B5[Supervisor Confirms or Rejects Correction]
+  J9_BLEGAL --> J9_BD2{RPWD Retention Applies?}
+  J9_BD2 -->|Yes - Must Retain| J9_B6[Erasure Blocked - Legal Hold Applied]
+  J9_BD2 -->|No - Safe to Erase| J9_B7[Data Erasure Executed]
+  J9_B4 --> J9_BEND([Rights Request Fulfilled])
+  J9_B5 --> J9_BEND
+  J9_B6 --> J9_BEND
+  J9_B7 --> J9_BEND
+
+  class J9_START dpdpa
+  class J9_A1,J9_A3,J9_A4 dpdpa
+  class J9_A2 parent
+  class J9_B1 parent
+  class J9_A5,J9_B2,J9_B4,J9_B7 system
+  class J9_B3,J9_B5 supervisor
+  class J9_BLEGAL,J9_B6 dpdpa
+  class J9_D1,J9_AD1,J9_BD1,J9_BD2 decision
+  class J9_AEND,J9_BEND terminal
+</pre>
+  </div>
+  <div class="legend">
+    <span class="legend-label">Actor</span>
+    <span class="legend-item"><span class="swatch" style="background:#EEF9F9;border:1.5px solid #20A6AD"></span> Meena (Parent) &mdash; consents and rights requests</span>
+    <span class="legend-item"><span class="swatch" style="background:#175F63"></span> Dr. Sunita (Supervisor) &mdash; correction review</span>
+    <span class="legend-item"><span class="swatch" style="background:#646871"></span> System (export, erasure, timestamps)</span>
+    <span class="legend-item"><span class="swatch" style="background:#CD423A"></span> DPDPA gates and legal holds</span>
+  </div>
+  <div class="note warn">
+    <strong>Legal conflict &mdash; DO NOT AUTO-ERASE:</strong> DPDPA 2023 grants the right to erasure. RPWD Act 2016 may require retention of therapy records for persons with disabilities. These obligations conflict. Engineering must implement a &ldquo;legal hold&rdquo; block on auto-erasure and route all erasure requests to a human reviewer. A legal opinion is required before the erasure screen can ship. See J9 story DPDPA-005 for detail.
+  </div>
+  <div class="note info">
+    <strong>This is DPDPA 2023, not HIPAA.</strong> Do not apply US HIPAA frameworks. India&rsquo;s applicable law is the Digital Personal Data Protection Act 2023. Consent must be specific, informed, and for a stated purpose. Parental consent is required for children under 18.
+  </div>
+</div>
+
+<script>
+  mermaid.initialize({
+    startOnLoad: false,
+    theme: 'base',
+    themeVariables: {
+      background: '#ffffff',
+      primaryColor: '#EEF9F9',
+      primaryTextColor: '#101319',
+      primaryBorderColor: '#20A6AD',
+      lineColor: '#646871',
+      secondaryColor: '#f4f7f9',
+      tertiaryColor: '#fff',
+      edgeLabelBackground: '#ffffff',
+      fontFamily: '-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif',
+      fontSize: '14px'
+    }
+  });
+
+  // Render all diagrams while panels are visible, then hide inactive panels
+  document.addEventListener('DOMContentLoaded', function() {
+    mermaid.run({ querySelector: 'pre.mermaid' }).then(function() {
+      // After all diagrams are rendered, hide all non-active panels
+      document.querySelectorAll('.tab-panel').forEach(function(p) {
+        if (!p.classList.contains('active')) {
+          p.classList.add('hidden');
+        }
+      });
+    }).catch(function(e) {
+      console.warn('Mermaid run error:', e);
+      // Still hide non-active panels even if some diagrams had errors
+      document.querySelectorAll('.tab-panel:not(.active)').forEach(function(p) {
+        p.classList.add('hidden');
+      });
+    });
+  });
+
+  function showTab(id, btn) {
+    document.querySelectorAll('.tab-panel').forEach(function(p) { p.classList.add('hidden'); });
+    document.querySelectorAll('.tab-btn').forEach(function(b) { b.classList.remove('active'); });
+    document.getElementById('panel-' + id).classList.remove('hidden');
+    btn.classList.add('active');
+  }
+</script>
+</body>
+</html>
