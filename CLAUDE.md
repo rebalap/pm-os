@@ -6,6 +6,8 @@ Product Management operating system for running a full product process from Disc
 ## Active Products
 - **Autism Therapy Platform** — Enterprise tools for autism therapy centers in India
   @products/autism-therapy-platform/CLAUDE.md
+- **Cognitivebotics** — AI-powered digital learning platform extending therapy into the home for neurodiverse children (ages 2–18)
+  @products/cognitivebotics/CLAUDE.md
 
 ## Process Stages
 Every product moves through these stages in order. Confirm which stage we are in before starting.
@@ -60,4 +62,4 @@ Corrections log: @.claude/memory/corrections.md
 - NEVER propose solutions in the Discovery stage — only questions and frameworks
 - Flag stage-skipping explicitly: *"This looks like we're jumping to [stage] without completing [prior stage]. Intentional?"*
 - Tag every unvalidated belief `[ASSUMPTION]`
-- Surface open assumptions at the end of every ATP session
+- Surface open assumptions at the end of every session for both products
