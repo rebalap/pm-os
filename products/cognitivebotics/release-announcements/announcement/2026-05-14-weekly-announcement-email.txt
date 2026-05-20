@@ -1,0 +1,59 @@
+Subject: Cognitivebotics — Weekly Product Update | May 14, 2026
+
+Hi team,
+
+Here's the product update for the period April 30 – May 14, 2026.
+
+────────────────────────────────────────
+1. PRODUCT UPDATES
+────────────────────────────────────────
+
+Released in the Last Two Weeks
+
+• LO Assignment Wizard — Enables therapists to quickly assign learning objectives to children. 100+ children onboarded in the first 3 months following release. (Therapist)
+
+• Social Story Wizard — Generates AI-personalized social stories for individual children. 22 stories created in the first month. (Therapist)
+
+• Lead Generation Initiatives — Adds a Try Demo flow on the website and in-app, plus branding and ASO improvements to drive new center sign-ups. (Admin / Growth)
+
+Coming in the Next Two Weeks
+
+• Redesigned ATC Experience — Responsive mobile layout for managing learning objectives; includes a 45-day toggle between the classic and new view for continuity. (Therapist / Teacher) — Launching May 25
+
+• Adaptive Learning Capability — Learning plans auto-update based on child progress data, upon therapist consent. (Therapist) — Launching June 25
+
+────────────────────────────────────────
+2. CS UPDATES
+────────────────────────────────────────
+
+Center engagement | April 30 – May 14, 2026
+
+Center Name                  | WAU | MAU
+-----------------------------|-----|-----
+GHMC (Vizag Govt Hospital)   |  12 |  16
+Manasa                       |  14 |  16
+Autism Centre Chinnakakani   |   7 |  13
+Sanskriti School             |   4 |   4
+TSRS Neredmet                |   0 |   0
+NIEPID                       |   2 |   3
+NIEPID II                    |   4 |   6
+Hope to Cope                 |   0 |   0
+Sahara                       |   0 |   0
+
+WAU = unique users active in the past 7 days
+MAU = unique users active in the past 30 days
+
+Notes:
+- Hope to Cope (6 users) and Sahara (5 users) were onboarded this week. Zero activity is expected at this stage.
+- TSRS Neredmet is showing 0 WAU/MAU — flagged for follow-up.
+
+────────────────────────────────────────
+FLAGS FOR FOLLOW-UP
+────────────────────────────────────────
+
+[ ] TSRS Neredmet — 0 WAU / 0 MAU with no explanation in the notes. Confirm with CS whether this center is still active or has churned.
+
+────────────────────────────────────────
+
+Regards,
+Cognitivebotics Product Team

@@ -33,6 +33,7 @@ Route automatically based on the task. No need to invoke manually unless overrid
 | Competitor features → tickets, user journey synthesis from documents | `mindless-product-owner` |
 | User stories, sprint backlog, acceptance criteria | `product-owner` |
 | Story review, sprint readiness, backlog QA | `story-reviewer` |
+| Button labels, modal copy, empty states, error messages, tooltips, onboarding, notifications | `copywriter` |
 
 **Slash commands for explicit control:**
 `/research` · `/scope` · `/prd-create` · `/prd-review` · `/design-critique` · `/validate` · `/engineering-handoff` · `/competitor-scan`

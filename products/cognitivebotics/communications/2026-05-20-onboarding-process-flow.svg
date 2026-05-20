@@ -1,0 +1,129 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="625" style="display:block; max-width:100%; height:auto; font-family: Inter, Helvetica Neue, Arial, sans-serif;">
+
+  <defs>
+    <marker id="arr-blue" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+      <path d="M0,0 L7,3.5 L0,7 Z" fill="#4F46E5"/>
+    </marker>
+    <marker id="arr-green" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+      <path d="M0,0 L7,3.5 L0,7 Z" fill="#10B981"/>
+    </marker>
+    <marker id="arr-gray" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+      <path d="M0,0 L7,3.5 L0,7 Z" fill="#9CA3AF"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="900" height="625" fill="#FFFFFF"/>
+
+  <!-- Title -->
+  <text x="450" y="32" text-anchor="middle" font-family="Inter, Helvetica Neue, Arial, sans-serif" font-size="17" font-weight="700" fill="#111827">Cognitivebotics — Onboarding Process: Today vs. After Roadmap</text>
+
+  <!-- ── TODAY SECTION ────────────────────────────────────────── -->
+  <rect x="0" y="44" width="900" height="32" fill="#10494C"/>
+  <text x="20" y="65" font-family="Inter, Helvetica Neue, Arial, sans-serif" font-size="12" font-weight="700" fill="#FFFFFF" letter-spacing="1">TODAY</text>
+
+  <!-- Row 1: Centre Onboarding — y=88 -->
+  <rect x="163" y="88" width="170" height="46" rx="8" fill="#4F46E5"/>
+  <text x="248" y="107" text-anchor="middle" font-family="Inter, Helvetica Neue, Arial, sans-serif" font-size="12" font-weight="600" fill="#FFFFFF">CS Training</text>
+  <text x="248" y="123" text-anchor="middle" font-family="Inter, Helvetica Neue, Arial, sans-serif" font-size="11" fill="rgba(255,255,255,0.85)">+ Demo Account (1 wk)</text>
+  <line x1="335" y1="111" x2="361" y2="111" stroke="#4F46E5" stroke-width="2" marker-end="url(#arr-blue)"/>
+  <rect x="365" y="88" width="170" height="46" rx="8" fill="#4F46E5"/>
+  <text x="450" y="107" text-anchor="middle" font-family="Inter, Helvetica Neue, Arial, sans-serif" font-size="12" font-weight="600" fill="#FFFFFF">Follow-up Training</text>
+  <text x="450" y="123" text-anchor="middle" font-family="Inter, Helvetica Neue, Arial, sans-serif" font-size="11" fill="rgba(255,255,255,0.85)">After demo week</text>
+  <line x1="537" y1="111" x2="563" y2="111" stroke="#4F46E5" stroke-width="2" marker-end="url(#arr-blue)"/>
+  <rect x="567" y="88" width="170" height="46" rx="8" fill="#4F46E5"/>
+  <text x="652" y="107" text-anchor="middle" font-family="Inter, Helvetica Neue, Arial, sans-serif" font-size="12" font-weight="600" fill="#FFFFFF">Centre Goes Live</text>
+  <text x="652" y="123" text-anchor="middle" font-family="Inter, Helvetica Neue, Arial, sans-serif" font-size="11" fill="rgba(255,255,255,0.85)">Therapists active</text>
+  <text x="882" y="115" text-anchor="end" font-family="Inter, Helvetica Neue, Arial, sans-serif" font-size="10" fill="#6B7280">CENTRE</text>
+
+  <!-- Row 2: Child Setup — y=166 -->
+  <rect x="163" y="166" width="170" height="46" rx="8" fill="#F59E0B"/>
+  <text x="248" y="185" text-anchor="middle" font-family="Inter, Helvetica Neue, Arial, sans-serif" font-size="12" font-weight="600" fill="#111827">55-pt Questionnaire</text>
+  <text x="248" y="201" text-anchor="middle" font-family="Inter, Helvetica Neue, Arial, sans-serif" font-size="11" fill="#92400E">LO Wizard — external tool</text>
+  <line x1="335" y1="189" x2="361" y2="189" stroke="#4F46E5" stroke-width="2" marker-end="url(#arr-blue)"/>
+  <rect x="365" y="166" width="170" height="46" rx="8" fill="#4F46E5"/>
+  <text x="450" y="185" text-anchor="middle" font-family="Inter, Helvetica Neue, Arial, sans-serif" font-size="12" font-weight="600" fill="#FFFFFF">LOs Assigned</text>
+  <text x="450" y="201" text-anchor="middle" font-family="Inter, Helvetica Neue, Arial, sans-serif" font-size="11" fill="rgba(255,255,255,0.85)">From assessment results</text>
+  <line x1="537" y1="189" x2="563" y2="189" stroke="#4F46E5" stroke-width="2" marker-end="url(#arr-blue)"/>
+  <rect x="567" y="166" width="170" height="46" rx="8" fill="#4F46E5"/>
+  <text x="652" y="185" text-anchor="middle" font-family="Inter, Helvetica Neue, Arial, sans-serif" font-size="12" font-weight="600" fill="#FFFFFF">Learning Plan Starts</text>
+  <text x="652" y="201" text-anchor="middle" font-family="Inter, Helvetica Neue, Arial, sans-serif" font-size="11" fill="rgba(255,255,255,0.85)">Child begins sessions</text>
+  <text x="882" y="193" text-anchor="end" font-family="Inter, Helvetica Neue, Arial, sans-serif" font-size="10" fill="#6B7280">CHILD</text>
+
+  <!-- Row 3: Ongoing — y=244 -->
+  <rect x="163" y="244" width="170" height="46" rx="8" fill="#4F46E5"/>
+  <text x="248" y="263" text-anchor="middle" font-family="Inter, Helvetica Neue, Arial, sans-serif" font-size="12" font-weight="600" fill="#FFFFFF">Progress Notification</text>
+  <text x="248" y="279" text-anchor="middle" font-family="Inter, Helvetica Neue, Arial, sans-serif" font-size="11" fill="rgba(255,255,255,0.85)">Sent to therapist</text>
+  <line x1="335" y1="267" x2="361" y2="267" stroke="#F59E0B" stroke-width="2" marker-end="url(#arr-blue)"/>
+  <rect x="365" y="244" width="170" height="46" rx="8" fill="#F59E0B"/>
+  <text x="450" y="263" text-anchor="middle" font-family="Inter, Helvetica Neue, Arial, sans-serif" font-size="12" font-weight="600" fill="#111827">Therapist Reviews</text>
+  <text x="450" y="279" text-anchor="middle" font-family="Inter, Helvetica Neue, Arial, sans-serif" font-size="11" fill="#92400E">Manual — required every time</text>
+  <line x1="537" y1="267" x2="563" y2="267" stroke="#F59E0B" stroke-width="2" marker-end="url(#arr-blue)"/>
+  <rect x="567" y="244" width="170" height="46" rx="8" fill="#F59E0B"/>
+  <text x="652" y="263" text-anchor="middle" font-family="Inter, Helvetica Neue, Arial, sans-serif" font-size="12" font-weight="600" fill="#111827">Manual Plan Update</text>
+  <text x="652" y="279" text-anchor="middle" font-family="Inter, Helvetica Neue, Arial, sans-serif" font-size="11" fill="#92400E">By therapist each time</text>
+  <text x="882" y="271" text-anchor="end" font-family="Inter, Helvetica Neue, Arial, sans-serif" font-size="10" fill="#6B7280">ONGOING</text>
+
+  <!-- Divider -->
+  <line x1="20" y1="312" x2="880" y2="312" stroke="#E5E7EB" stroke-width="1.5" stroke-dasharray="6,4"/>
+
+  <!-- ── AFTER ROADMAP SECTION ──────────────────────────────────── -->
+  <rect x="0" y="318" width="900" height="32" fill="#10B981"/>
+  <text x="20" y="339" font-family="Inter, Helvetica Neue, Arial, sans-serif" font-size="12" font-weight="700" fill="#FFFFFF" letter-spacing="1">AFTER ROADMAP</text>
+
+  <!-- Row 1: Centre Onboarding (unchanged) — y=360 -->
+  <rect x="163" y="360" width="170" height="46" rx="8" fill="#9CA3AF"/>
+  <text x="248" y="379" text-anchor="middle" font-family="Inter, Helvetica Neue, Arial, sans-serif" font-size="12" font-weight="600" fill="#FFFFFF">CS Training</text>
+  <text x="248" y="395" text-anchor="middle" font-family="Inter, Helvetica Neue, Arial, sans-serif" font-size="11" fill="rgba(255,255,255,0.8)">+ Demo Account (1 wk)</text>
+  <line x1="335" y1="383" x2="361" y2="383" stroke="#9CA3AF" stroke-width="2" marker-end="url(#arr-gray)"/>
+  <rect x="365" y="360" width="170" height="46" rx="8" fill="#9CA3AF"/>
+  <text x="450" y="379" text-anchor="middle" font-family="Inter, Helvetica Neue, Arial, sans-serif" font-size="12" font-weight="600" fill="#FFFFFF">Follow-up Training</text>
+  <text x="450" y="395" text-anchor="middle" font-family="Inter, Helvetica Neue, Arial, sans-serif" font-size="11" fill="rgba(255,255,255,0.8)">Unchanged</text>
+  <line x1="537" y1="383" x2="563" y2="383" stroke="#9CA3AF" stroke-width="2" marker-end="url(#arr-gray)"/>
+  <rect x="567" y="360" width="170" height="46" rx="8" fill="#9CA3AF"/>
+  <text x="652" y="379" text-anchor="middle" font-family="Inter, Helvetica Neue, Arial, sans-serif" font-size="12" font-weight="600" fill="#FFFFFF">Centre Goes Live</text>
+  <text x="652" y="395" text-anchor="middle" font-family="Inter, Helvetica Neue, Arial, sans-serif" font-size="11" fill="rgba(255,255,255,0.8)">Unchanged</text>
+  <text x="882" y="387" text-anchor="end" font-family="Inter, Helvetica Neue, Arial, sans-serif" font-size="10" fill="#6B7280">CENTRE</text>
+
+  <!-- Row 2: Child Setup improved — y=438 -->
+  <rect x="163" y="438" width="170" height="46" rx="8" fill="#10B981"/>
+  <text x="248" y="457" text-anchor="middle" font-family="Inter, Helvetica Neue, Arial, sans-serif" font-size="12" font-weight="600" fill="#FFFFFF">Integrated Assessment</text>
+  <text x="248" y="473" text-anchor="middle" font-family="Inter, Helvetica Neue, Arial, sans-serif" font-size="11" fill="rgba(255,255,255,0.9)">In-platform ✓ · Jul 2026</text>
+  <line x1="335" y1="461" x2="361" y2="461" stroke="#10B981" stroke-width="2" marker-end="url(#arr-green)"/>
+  <rect x="365" y="438" width="170" height="46" rx="8" fill="#9CA3AF"/>
+  <text x="450" y="457" text-anchor="middle" font-family="Inter, Helvetica Neue, Arial, sans-serif" font-size="12" font-weight="600" fill="#FFFFFF">LOs Assigned</text>
+  <text x="450" y="473" text-anchor="middle" font-family="Inter, Helvetica Neue, Arial, sans-serif" font-size="11" fill="rgba(255,255,255,0.8)">Unchanged</text>
+  <line x1="537" y1="461" x2="563" y2="461" stroke="#9CA3AF" stroke-width="2" marker-end="url(#arr-gray)"/>
+  <rect x="567" y="438" width="170" height="46" rx="8" fill="#9CA3AF"/>
+  <text x="652" y="457" text-anchor="middle" font-family="Inter, Helvetica Neue, Arial, sans-serif" font-size="12" font-weight="600" fill="#FFFFFF">Learning Plan Starts</text>
+  <text x="652" y="473" text-anchor="middle" font-family="Inter, Helvetica Neue, Arial, sans-serif" font-size="11" fill="rgba(255,255,255,0.8)">Unchanged</text>
+  <text x="882" y="465" text-anchor="end" font-family="Inter, Helvetica Neue, Arial, sans-serif" font-size="10" fill="#6B7280">CHILD</text>
+
+  <!-- Row 3: Ongoing — Adaptive Learning — y=516 -->
+  <rect x="163" y="516" width="170" height="46" rx="8" fill="#10B981"/>
+  <text x="248" y="535" text-anchor="middle" font-family="Inter, Helvetica Neue, Arial, sans-serif" font-size="12" font-weight="600" fill="#FFFFFF">Adaptive Learning</text>
+  <text x="248" y="551" text-anchor="middle" font-family="Inter, Helvetica Neue, Arial, sans-serif" font-size="11" fill="rgba(255,255,255,0.9)">Monitors progress · Jun 2026</text>
+  <line x1="335" y1="539" x2="361" y2="539" stroke="#10B981" stroke-width="2" marker-end="url(#arr-green)"/>
+  <rect x="365" y="516" width="170" height="46" rx="8" fill="#10B981"/>
+  <text x="450" y="535" text-anchor="middle" font-family="Inter, Helvetica Neue, Arial, sans-serif" font-size="12" font-weight="600" fill="#FFFFFF">Auto / Recommended</text>
+  <text x="450" y="551" text-anchor="middle" font-family="Inter, Helvetica Neue, Arial, sans-serif" font-size="11" fill="rgba(255,255,255,0.9)">Plan update generated</text>
+  <line x1="537" y1="539" x2="563" y2="539" stroke="#10B981" stroke-width="2" marker-end="url(#arr-green)"/>
+  <rect x="567" y="516" width="170" height="46" rx="8" fill="#10B981"/>
+  <text x="652" y="535" text-anchor="middle" font-family="Inter, Helvetica Neue, Arial, sans-serif" font-size="12" font-weight="600" fill="#FFFFFF">Therapist Review</text>
+  <text x="652" y="551" text-anchor="middle" font-family="Inter, Helvetica Neue, Arial, sans-serif" font-size="11" fill="rgba(255,255,255,0.9)">Optional — reduced burden ✓</text>
+  <text x="882" y="543" text-anchor="end" font-family="Inter, Helvetica Neue, Arial, sans-serif" font-size="10" fill="#6B7280">ONGOING</text>
+
+  <!-- Legend -->
+  <rect x="163" y="581" width="11" height="11" rx="2" fill="#4F46E5"/>
+  <text x="179" y="591" font-family="Inter, Helvetica Neue, Arial, sans-serif" font-size="10" fill="#6B7280">Standard step</text>
+  <rect x="270" y="581" width="11" height="11" rx="2" fill="#F59E0B"/>
+  <text x="286" y="591" font-family="Inter, Helvetica Neue, Arial, sans-serif" font-size="10" fill="#6B7280">Manual / External (friction)</text>
+  <rect x="457" y="581" width="11" height="11" rx="2" fill="#10B981"/>
+  <text x="473" y="591" font-family="Inter, Helvetica Neue, Arial, sans-serif" font-size="10" fill="#6B7280">New / Improved</text>
+  <rect x="568" y="581" width="11" height="11" rx="2" fill="#9CA3AF"/>
+  <text x="584" y="591" font-family="Inter, Helvetica Neue, Arial, sans-serif" font-size="10" fill="#6B7280">Unchanged (roadmap)</text>
+
+  <!-- Footer -->
+  <text x="450" y="614" text-anchor="middle" font-family="Inter, Helvetica Neue, Arial, sans-serif" font-size="10" fill="#9CA3AF">Generated by Cognitivebotics PM OS · 2026-05-20</text>
+
+</svg>

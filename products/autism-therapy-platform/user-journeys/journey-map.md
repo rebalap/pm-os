@@ -11,24 +11,26 @@
 
 > **Updated:** 2026-04-22T00:00:00+05:30 | Engineering Alignment Meeting
 
-Following the engineering alignment session on 22 April 2026, the MVP scope for the platform has been revised. This journey map reflects the original 9-journey model (including in-session data collection). The table below documents which journeys are in scope for the MVP and which are deferred.
+Following the engineering alignment session on 22 April 2026, the MVP scope for the platform has been revised. The journey model has since been expanded from the original 9 journeys to **12 journeys (Journey 0–11)**. Key structural changes: the original J1 (Enrollment and Intake) has been split into Journey 1 (Family Inquiry & First Contact) and Journey 2 (Intake & Enrollment); Journey 0 (DPDPA Consent Management) is now the explicit regulatory gate that must be completed before any other journey can proceed; Journey 5 (In-Session Data Collection) is documented as permanently out of scope for India MVP; and Journey 7 (Supervisor Review & Program Updates) is a newly separated journey deferred post-MVP alongside Journey 4 and Journey 8. The table below documents the MVP status of all 12 journeys.
 
 | Journey | Original scope | MVP status | Decision rationale |
 | --- | --- | --- | --- |
-| J1 — Child Enrollment and Intake | In | ✅ **In scope** | Core to onboarding; reusable EMR components available |
-| J2 — Clinical Program Design | In | ❌ **Deferred — post-MVP** | Therapy-specific; requires net-new build |
-| J3 — Session Notes / Clinical Notes | In | ✅ **In scope** | Clinical documentation; reusable components available |
-| J4 — Progress Reports | In | ❌ **Deferred — post-MVP** | Therapy-specific reporting; requires net-new build |
-| J5 — Billing | In | ✅ **In scope** | Core to center operations; reusable components available |
-| J6 — Scheduling and Attendance | In | ✅ **In scope** | Core to center operations; reusable components available |
-| J7 — Dropout Prevention | In | ✅ **In scope** | Operational workflow; reusable components available |
-| J8 — Analytics Dashboard | In | ✅ **In scope** | Center visibility; reusable components available |
-| J9 — DPDPA Consent Management | In | ✅ **In scope** | Hard regulatory gate; must ship before any child health data enters the system |
-| In-Session Data Collection | Out | ❌ **Out of scope — India MVP** | No reimbursement driver in Indian out-of-pocket market; future opportunity for US/international |
+| Journey 0 — DPDPA Consent Management | In | ✅ **In scope** | Hard regulatory gate; must complete before any child health data enters the system |
+| Journey 1 — Family Inquiry & First Contact | New | ✅ **In scope** | Split from old J1; inquiry pipeline; reusable EMR components available |
+| Journey 2 — Intake & Enrollment | In | ✅ **In scope** | Core to onboarding; reusable EMR components available |
+| Journey 3 — Scheduling & Attendance Management | In | ✅ **In scope** | Core to center operations; reusable components available |
+| Journey 4 — Clinical Program Design | In | ❌ **Deferred — post-MVP** | Therapy-specific; requires net-new build |
+| Journey 5 — In-Session Data Collection | Out | ❌ **Out of scope — India MVP** | No reimbursement driver in Indian out-of-pocket market; future opportunity for US/international |
+| Journey 6 — Session Notes / Clinical Notes | In | ✅ **In scope** | Clinical documentation; reusable components available |
+| Journey 7 — Supervisor Review & Program Updates | New | ❌ **Deferred — post-MVP** | Extension of program design; requires net-new build; newly separated from old J2 |
+| Journey 8 — Progress Reporting to Parents | In | ❌ **Deferred — post-MVP** | Therapy-specific reporting; requires net-new build |
+| Journey 9 — Billing & Fee Collection | In | ✅ **In scope** | Core to center operations; reusable components available |
+| Journey 10 — Dropout Prevention | In | ✅ **In scope** | Operational workflow; reusable components available |
+| Journey 11 — Analytics Dashboard | In | ✅ **In scope** | Center visibility; reusable components available |
 
-**Strategic implication:** The MVP will function as a **clinical management tool** rather than a therapy-specific platform. J2 (program design) and J4 (progress reports) — the most clinically differentiated features — require primary research validation before being confirmed as safe to defer. If research shows they are adoption blockers for therapists, this decision must be revisited before scope is locked.
+**Strategic implication:** The MVP will function as a **clinical management tool** rather than a therapy-specific platform. Journey 4 (program design), Journey 7 (supervisor review), and Journey 8 (progress reports) — the most clinically differentiated features — require primary research validation before being confirmed as safe to defer. If research shows any of these are adoption blockers for therapists, the decision must be revisited before scope is locked.
 
-**Open action:** Product to run primary research with therapy centers to validate whether deferring J2 and J4 creates an adoption blocker. See meeting summary: `meetings/engineering/2026-04-22-engineering-alignment-meeting-summary.md`
+**Open action:** Product to run primary research with therapy centers to validate whether deferring Journey 4, Journey 7, and Journey 8 creates an adoption blocker. See meeting summary: `meetings/engineering/2026-04-22-engineering-alignment-meeting-summary.md`
 
 ---
 

@@ -10,25 +10,28 @@
 
 > **Updated:** 2026-04-22T00:00:00+05:30 | Engineering Alignment Meeting
 
-The engineering alignment session on 22 April 2026 produced a key scope decision. Six of the eight journeys can be built using existing EMR components. Two journeys — **J2 (Clinical Program Design)** and **J4 (Progress Reports)** — require net-new build and are deferred to post-MVP. In-session data collection remains out of scope for the Indian market.
+The engineering alignment session on 22 April 2026 produced a key scope decision. The journey model has since been updated from the original 9 journeys to **12 journeys (Journey 0–11)**. Of the 12, eight journeys are in scope for the MVP — all buildable using existing EMR components. Four journeys are not in scope: **Journey 4 (Clinical Program Design)**, **Journey 7 (Supervisor Review & Program Updates)**, and **Journey 8 (Progress Reports)** require net-new build and are deferred to post-MVP; **Journey 5 (In-Session Data Collection)** remains out of scope for the Indian market.
 
 **Revised MVP scope at a glance:**
 
 | Journey | MVP |
 | --- | --- |
-| J1 Enrollment and Intake | ✅ In |
-| J2 Clinical Program Design | ❌ Deferred |
-| J3 Session Notes | ✅ In |
-| J4 Progress Reports | ❌ Deferred |
-| J5 Billing | ✅ In |
-| J6 Scheduling and Attendance | ✅ In |
-| J7 Dropout Prevention | ✅ In |
-| J8 Analytics Dashboard | ✅ In |
-| In-Session Data Collection | ❌ Out — India MVP |
+| Journey 0 — DPDPA Consent Management | ✅ In |
+| Journey 1 — Family Inquiry & First Contact | ✅ In |
+| Journey 2 — Intake & Enrollment | ✅ In |
+| Journey 3 — Scheduling & Attendance Management | ✅ In |
+| Journey 4 — Clinical Program Design | ❌ Deferred |
+| Journey 5 — In-Session Data Collection | ❌ Out — India MVP |
+| Journey 6 — Session Notes / Clinical Notes | ✅ In |
+| Journey 7 — Supervisor Review & Program Updates | ❌ Deferred |
+| Journey 8 — Progress Reporting to Parents | ❌ Deferred |
+| Journey 9 — Billing & Fee Collection | ✅ In |
+| Journey 10 — Dropout Prevention | ✅ In |
+| Journey 11 — Analytics Dashboard | ✅ In |
 
-**What this changes:** The original exec summary below identifies in-session data collection (Stage 4) as the foundational break point and the highest-priority problem to solve. That recommendation stands for the long-term product vision. For the MVP, however, the platform will launch as a **clinical management tool** — solving scheduling, billing, enrollment, and dropout prevention — rather than as a therapy-specific data platform. Clinical differentiation (program design, structured progress reporting) follows in a subsequent release.
+**What this changes:** The original exec summary below identifies in-session data collection (Journey 5) as the foundational break point and the highest-priority problem to solve. That recommendation stands for the long-term product vision. For the MVP, however, the platform will launch as a **clinical management tool** — solving scheduling, billing, enrollment, and dropout prevention — rather than as a therapy-specific data platform. Clinical differentiation (program design, supervisor review workflows, structured progress reporting) follows in a subsequent release.
 
-**Risk to monitor:** Therapist adoption is the make-or-break variable. Primary research is underway to determine whether deferring J2 and J4 creates an adoption blocker before MVP scope is locked.
+**Risk to monitor:** Therapist adoption is the make-or-break variable. Primary research is underway to determine whether deferring Journey 4, Journey 7, and Journey 8 creates an adoption blocker before MVP scope is locked.
 
 ---
 

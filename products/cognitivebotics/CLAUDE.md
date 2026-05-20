@@ -106,6 +106,40 @@ See `stage-tracker.md` for where each workstream currently stands.
 - **Social story generation:** AI-drafted narratives personalized to the child (planned)
 - **Adaptive content delivery:** Adjusting difficulty and pacing based on session performance data
 
+## Story Authoring Process
+
+Stories for Cognitivebotics follow a three-step cycle. Always confirm which step is active before starting work.
+
+Stories live in `prds-and-stories/` under three folders — one per step. A story's folder is its status.
+
+```
+prds-and-stories/
+  01-drafts/          ← Step 1 output: draft stories awaiting PM review
+  02-in-review/       ← Step 2 output: stories under revision, open questions being resolved
+  03-jira-ready/      ← Step 3 output: clean, copy-paste ready for JIRA
+```
+
+**Step 1 — Context to Draft → save to `01-drafts/`**
+- Input: PM provides broad context, raw notes, meeting notes, or rough requirements
+- Output: draft stories with all ACs written, open questions flagged explicitly, no placeholders left silent
+- AC format: Given/When/Then only (see product-owner agent)
+- Do not move to `02-in-review/` until PM has confirmed they have read the draft
+
+**Step 2 — Review and Refine → save to `02-in-review/`**
+- Input: PM provides corrections, answers to open questions, and any changed requirements
+- Output: revised stories with all open questions resolved and ACs updated to reflect PM feedback
+- Flag any new open questions introduced by the PM's answers before finalising
+- Do not move to `03-jira-ready/` until all open questions are closed
+
+**Step 3 — JIRA Ready → save to `03-jira-ready/`**
+- Input: confirmed Step 2 stories with no outstanding questions
+- Output: clean, copy-paste ready stories — no open questions, no `[ASSUMPTION]` tags, no placeholders
+- Format must match JIRA story structure: title, user story statement, context, ACs, edge cases, NFRs, dependencies, definition of done
+
+> If the PM provides context and asks for stories without specifying a step, default to Step 1 and save to `01-drafts/`.
+
+---
+
 ## Active Workstreams
 
 > Update this section as workstreams open or close. Reference `stage-tracker.md` for detail.

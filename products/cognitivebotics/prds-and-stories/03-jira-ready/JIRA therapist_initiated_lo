@@ -1,0 +1,138 @@
+As a therapist,
+I want to initiate a child's learning session directly from the therapist web portal,
+so that I can facilitate in-clinic or supervised sessions without requiring the parent to be present or logged in.
+
+Background
+
+The Cognitivebotics learning session (where a child works through their ILP's Learning Objectives) currently runs on the mobile/caregiver app. 
+
+It does not run in the browser. Therapists who want to run a session in clinic today must use the parent's login credentials or ask the parent to start the session remotely — both are friction-heavy.
+
+This story surfaces a "Start session" entry point in three locations on the therapist portal. In all three cases, the action does not start a session in-browser; it redirects the therapist to open the Parent app automatically or download the app if it does not exist. 
+
+Acceptance Criteria
+
+Plan Status Gate (applies to all three entry points)
+
+"Start session" is disabled (visible but not clickable) for any child whose plan status is "No plan" or "Plan ended".
+
+When a therapist hovers over a disabled "Start session" control, a tooltip appears explaining why: "Assign an active plan before starting a session."
+
+"Start session" is enabled for children with plan status: On track, Limited progress, or Plan ending.
+
+Entry Point 1 — Dashboard: Recently Active Children List
+
+The dashboard displays a recently active children list. Each child row has a play button  displayed on the left side of the row.
+
+When a therapist hovers over the play button for a child with an active plan, a tooltip reading "Start session" appears.
+
+Clicking the play button for an eligible child opens the redirect modal (see Redirect Modal Behaviour ).
+
+The play button is visible only for children explicitly assigned to the logged-in therapist. Children not on the therapist's caseload do not show a play button.
+
+Entry Point 2 — Children Tab: Child List Row Action Menu
+
+The Children tab displays a list of children. Each row has a 3-dot menu (⋮) on the right.
+
+Clicking the ⋮ menu on a child row reveals exactly two options: "Start session" and "Remove child".
+
+"Start session" in the ⋮ menu is disabled (greyed out, not clickable) for children with "No plan" or "Plan ended" status, per AC-1 and AC-2.
+
+Clicking an enabled "Start session" from the ⋮ menu opens the redirect modal (see Redirect Modal Behaviour below).
+
+The ⋮ menu is visible only for children explicitly assigned to the logged-in therapist.
+
+The Children tab child list displays the following fields per row: Child name, Therapist(s) assigned, Last played date, Objectives mastered (shown as a progress bar), and Plan status badge. Plan status badges are: On track, Limited progress, Plan ending, Plan ended, No plan.
+
+Entry Point 3 — Individual Child Learning Plan Page
+
+The individual child's Learning Plan page has a "Start session" button in the top-right corner of the page, displayed alongside the "Update Plan" button.
+
+The "Start session" button is disabled (per AC-1 and AC-2) if the child's plan status is "No plan" or "Plan ended".
+
+Clicking an enabled "Start session" from the Learning Plan page opens the redirect modal (see Redirect Modal Behaviour below).
+
+The "Start session" button on this page is visible only if the logged-in therapist is explicitly assigned to the child.
+
+Redirect Modal Behaviour
+
+On a mobile device (iOS or Android): The primary button reads "Continue in App", determined by the device OS. The button uses a universal link: if the Cognitivebotics mobile app is already installed, it opens the app directly; if not, it opens the relevant store listing. 
+
+On a desktop browser (macOS or Windows): In place of the store button, the modal displays a QR code. Scanning the QR code with a phone takes the therapist to the correct store for their phone's OS (iOS App Store or Google Play). A caption below the QR code reads: "Scan with your phone or tablet to open the app."
+
+Clicking "Cancel" closes the modal. The therapist is returned to the exact view they were on before the modal appeared, with no state change.
+
+The modal does not initiate a session, create a session record, or write any data. It is a redirect-only interaction.
+
+Element
+
+Recommended copy
+
+Modal title
+
+Start this session in the app
+
+Body (mobile — all devices)
+
+Use the Cognitivebotics Learning App on your device to start and run this session.
+
+Body (desktop)
+
+This feature is available on the mobile app 
+
+Primary CTA (mobile)
+
+Continue in app
+
+QR caption (desktop)
+
+Opens the CognitiveBotics: Plan and Track app — or takes you to download it.
+
+Secondary CTA
+
+Cancel
+
+Disabled tooltip
+
+No active plan. Assign one to start a session.
+
+Session Attribution
+
+When a therapist logs into the Cognitivebotics mobile app using their therapist credentials and starts a session, the system records the session initiator as "Therapist" in the session record.
+
+When a parent/caregiver logs into the mobile app and starts a session, the system records the session initiator as "Parent".
+
+The session record's initiator field must store at least two values: "Therapist" and "Parent". The field must be stored on the session record in the backend and be queryable. It is the data foundation for a downstream reporting story (not surfaced in any existing UI view in this story).
+
+Session attribution is determined by the account type used to log into the mobile app at the time of session start — not by who clicked "Start session" on the web portal.
+
+Access Control
+
+A therapist can only see and interact with "Start session" controls for children who are explicitly assigned to them in the system.
+
+A therapist navigating directly to a child's Learning Plan page for a child not on their caseload must not see the "Start session" button on that page.
+
+If a therapist somehow triggers the "Start session" action for an unassigned child (e.g., via direct URL manipulation), the system must return an authorization error and not open the modal or write any data.
+
+Designs: https://www.figma.com/design/ix6snKACB2pOaeJuOK264u/ATC-V2?node-id=7464-97553&t=2kJMJLpBnXt4FATt-4 
+
+Definition of Done
+
+All  acceptance criteria pass QA on the therapist web portal 
+
+"Start session" is visibly disabled with correct tooltip for children with "No plan" and "Plan ended" status across all three entry points.
+
+On mobile (iOS): universal link opens the app directly if installed, App Store if not.
+
+On mobile (Android): universal link opens the app directly if installed, Play Store if not.
+
+On desktop (macOS/Windows): modal shows a QR code with caption "This feature is available on the mobile app " QR code resolves to the correct store by phone OS.
+
+The session initiator field ("Therapist" / "Parent") is written to the session record on session start and confirmed queryable by backend engineer.
+
+Access control: a therapist account cannot trigger "Start session" for an unassigned child — confirmed by QA with a cross-caseload test account.
+
+"Cancel" returns the therapist to the correct prior view with no state change — confirmed for all three entry points.
+
+
+

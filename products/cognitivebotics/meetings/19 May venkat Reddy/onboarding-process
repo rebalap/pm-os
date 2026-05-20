@@ -1,0 +1,24 @@
+Onboarding process
+
+Current process
+
+The current onboarding process involves our CS team training the therapists on how to user the platform, the team given them a demo account to play around with it for a week after which another training is done for the platform usage. This has been the process. 
+
+As part pf the child onboarding, the therapists are recommended to fill out a 55point questionnaire to let the therapist know where the child lies in the spectrum or what skills the child currently possessed. The responses of the questionnaire determine the first set of learning objectives to be assigned to the child. This questionnaire at the moment is outside the cognitivebotics application Lets call it an LO wizard 
+
+The Lo wizard which has been built by Prahlad has the following capabilities built in to help the CS team do easy onboarding : 
+* Compares questionnaire responses across multiple time periods. 
+* Supports multi-language. 
+* Shares questionnaires with a therapist or caregiver to complete at their convenience. 
+* Provides access for therapists from ce ntres to manage their own children independently. 
+* Generates reports using the child’s raw  data from cognitivebotics tool . 
+
+On a periodic basis based on the Childs progress therapists is informed Childs progress or lack of progress through notifications. The therapist then reviews th c dhilrds progress and modifies the plan to adjust the difficulty of the learning plan 
+
+To be process
+
+The ideal process : 
+The questionnaire based approach for LO assignment will be baked in house into the platform making it easy for the therapists /teachers to et recommendation on what to assign to the child 
+
+Adaptive learning is being built in and would be live by end of June. The way adaptive learning will be built is that based on the Childs progress, the learning plan will wither get auto updated or alternatively, will be system recommended and set of review of the therapists. This will reduce the  obverhead on the therapist/teacher to periodically  review the learning plan 
+

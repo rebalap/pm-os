@@ -1,0 +1,82 @@
+As a Therapist or Admin
+I want to 
+
+see four metric summary cards on my dashboard that reflect children within my scope
+So that
+
+ I can assess my caseload health at a glance the moment I log in, with no ambiguity about what each number represents
+
+Definitions: 
+Recently active	Children whose last played date OR created date falls within the last 30 calendar days (rolling window from today)
+Need attention	Children whose current ILP status is one of: Plan ended, Limited progress, or Plan ending soon
+On track	                All children whose plan status is On track 
+Journal entries in past day	Children for whom at least one parent journal entry was submitted on the previous calendar day (yesterday, 00:00–23:59 in the center's local timezone)
+
+Acceptance Criteria:
+
+AC-01: Given User is logged in with the Therapist role, when the dashboard loads, then all four metric cards display counts scoped to children assigned to therapist only
+
+AC-02: Given Admin is logged in , when the dashboard loads, then all four metric cards display counts scoped to all children in the center regardless of assigned therapist
+
+ AC-03: Given the dashboard has loaded, when a user views the cards, then exactly four cards appear in this order: Recently active, Need attention, On track, Journal entries in past day — no more, no fewer
+
+AC-04: Given the "Recently active" card, when the count is calculated, then it includes every child whose last played date OR created/onboarded date is within the last 30 calendar days; a child with only a createddate in the last 30 days and no play history is included
+
+ AC-05: Given the "Need attention" card, when the count is calculated, then it includes only children with ILP status Plan ended, Limited progress, or Plan ending soon; children with any other status are excluded
+
+AC-06: Given the "On track" card, when the count is calculated, then it includes children with ILP status On track. Does not children with status New;
+
+Given the "Journal entries in past day" card, when the count is calculated, then it includes only children for whom a parent journal entry exists with a submission timestamp on the previous calendar day (yesterday) in the center's  timezone; entries submitted today or two or more days ago are excluded
+
+AC-07: Given a child row is displayed in the dashboard list, when the user clicks "View journal" (or the book icon) on that row, then the app navigates to the Children tab in the left pane and opens that child's record with the Journal section active
+
+AC-08: Given a child row is displayed in the dashboard list, when the user clicks "View reports" on that row, then the app navigates to the Children tab in the left pane and opens that child's record with the Reports section 
+
+AC-09: Given the dashboard loads, when the children list renders, then it defaults to the "Needs attention" filter; the filter control shows "Needs attention" as the active state with no user interaction required
+
+AC-10 : Given the "Needs attention" filter is active, when the list renders, then children appear in this fixed order: `Plan ended` first, `Limited progress` second, `Plan ending soon` third; within each group, children are sorted alphabetically by first name (A→Z)
+
+AC-11 : Given the user selects "All recently active" from the filter control, when the list refreshes, then children are sorted by `last_played_date` descending; children with null `last_played_date` (NEW) appear at the top sorted by `created_date` descending
+
+AC-12: Given a child row is displayed, when the user clicks "Manage plan", then the app navigates to the Children tab and opens that child's record with the Plan / ILP section active
+
+AC-13: Given a Therapist is logged in, when the list renders, each row shows: child name, status badge, last played date, and three quick-action buttons — no therapist name column is present.
+
+AC-14: Given a Supervisor / Admin is logged in, when the list renders, each row shows: child name, therapist name (assigned therapist), status badge, last played date, and three quick-action buttons.
+
+AC-15: Given either filter is active, when a Therapist views the list, then only children assigned to that therapist appear in the list rows.
+
+AC-16: Given either filter is active, when a Supervisor / Admin views the list, then all children in the center matching the filter criteria appear, regardless of which therapist they are assigned to.
+
+AC-17: Given any quick-action navigation has occurred, when the child's record opens, then "Children" is highlighted as the active item in the left navigation pane 
+
+AC-18: Given a child row is displayed and last played date is null, then the last played field shows "-" — the row is not suppressed or hidden.
+
+AC-19: Given any quick-action navigation has occurred, when the child's record opens, then "Children" is highlighted as the active item in the left navigation pane
+
+AC-20: Given any quick-action navigation has occurred, when the user clicks the browser back button, then the user returns to the dashboard with the same filter state and scroll position they left.
+
+Edge Cases & Error States:
+EC-01: If a card count is zero, the card displays "0" — it does not hide, collapse. 
+EC-02: If the data fetch for metric cards fails, each card displays "Unable to load — refresh" rather than 0 or a stale count without indication
+Ec-03: If therapist has no assigned children, all four cards display 0 and the list shows an empty state: "No children assigned to you yet. Contact your supervisor."
+EC-04: If the "All recently active" list is empty, the list shows "No recently active children to show.”
+
+EC - 05 : If a child has multiple ILP status values simultaneously (edge case when multiple plans exist), the highest urgency status takes precedence for sort and badge: `Plan ended` > `Limited progress` > `Plan ending soon`
+
+Ec-06  If the "Needs attention" list is empty (no children with attention statuses in scope), the list shows "No children to show." with no data rows rendered.
+
+Definition of Done:
+
+Metric definitions verified with test data: child with only created_date in last 30 days appears in "All Recently active"i.e. New status child appears in “All Recently Active”; 
+
+Admin and Therapist role verified: Therapist account shows therapist-scoped counts; Supervisor/Admin account shows center-wide counts
+
+Sort order verified with mixed-status test dataset for both filter views
+
+Therapist view vs. supervisor view column layout verified
+
+All three quick actions verified to land on the correct section of the child record
+
+Browser back verified: filter state and scroll position preserved
+

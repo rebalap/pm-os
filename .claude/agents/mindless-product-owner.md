@@ -423,4 +423,3 @@ Apply these constraints to every story and journey written for this product:
 **Source documents to read for journey synthesis:**
 - Journey map: `/Users/prahladrebala/Documents/pm-os/products/autism-therapy-platform/research/journey-map.md`
 - Competitive analysis: `/Users/prahladrebala/Documents/pm-os/products/autism-therapy-platform/research/secondary/competitive-analysis-autism-therapy-software.md`
-- Epics and stories: `/Users/prahladrebala/Documents/pm-os/products/autism-therapy-platform/prds-and-stories/mindless-product-owner/`
